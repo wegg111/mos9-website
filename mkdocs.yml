@@ -1,0 +1,145 @@
+site_name: MOS-9
+site_description: 开源机器人MOS-9，涵盖机械设计、电路系统、通信框架、运动控制、仿真与模型、教程和开发参考
+site_url: https://yourname.github.io/open-robot-docs/
+repo_url: https://github.com/yourname/open-robot-docs
+repo_name: yourname/open-robot-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.path
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yourname/open-robot-docs
+
+nav:
+  - 首页: index.md
+  - 引言: robocup_intro.md
+  - 快速开始: quickstart.md
+
+  - 系统总览:
+      - 总体架构: overview/architecture.md
+      - 硬件与软件映射: overview/hardware-software-map.md
+      - 仓库结构: overview/repo-structure.md
+
+  - 机械设计:
+      - 概览: mechanical/index.md
+      - 本体结构: mechanical/body-structure.md
+      - 关节与自由度: mechanical/joints-and-dof.md
+      - 传动设计: mechanical/transmission.md
+      - 材料与加工: mechanical/materials.md
+      - 装配指南: mechanical/assembly.md
+
+  - 电路系统:
+      - 概览: electronics/index.md
+      - 供电系统: electronics/power.md
+      - 主控与下位机: electronics/controller.md
+      - 传感器: electronics/sensors.md
+      - 电机驱动: electronics/actuator-driver.md
+      - 线束与接线: electronics/wiring.md
+      - 安全设计: electronics/safety.md
+
+  - 通信框架:
+      - 概览: communication/index.md
+      - 整体架构: communication/architecture.md
+      - 中间件设计: communication/middleware.md
+      - 发布订阅机制: communication/pubsub.md
+      - 消息定义: communication/messages.md
+      - 时间同步: communication/timing-and-sync.md
+      - 示例代码: communication/examples.md
+
+  - 运动控制:
+      - 概览: control/index.md
+      - 运动学: control/kinematics.md
+      - 动力学: control/dynamics.md
+      - 状态机: control/state-machine.md
+      - 步态控制: control/gait.md
+      - Mimic: control/mimic.md
+      - 踢球: control/kicking.md
+      - AMP 行走: control/amp.md
+
+  - 仿真与模型:
+      - 概览: simulation/index.md
+      - URDF: simulation/urdf.md
+      - XML: simulation/xml.md
+      - USD: simulation/usd.md
+      - 资源组织: simulation/assets.md
+      - Sim-to-Real: simulation/sim2real.md
+
+  - 教程:
+      - 概览: tutorials/index.md
+      - 从零启动系统: tutorials/bringup.md
+      - 添加一个关节: tutorials/add-a-joint.md
+      - 添加一个传感器: tutorials/add-a-sensor.md
+      - 训练行走策略: tutorials/train-walking.md
+      - 部署踢球策略: tutorials/deploy-kick-policy.md
+
+  - 参考:
+      - 概览: reference/index.md
+      - 配置文件: reference/configs.md
+      - 消息接口: reference/messages.md
+      - Topics 与服务: reference/topics.md
+      - API 参考: reference/api.md
+
+  - 开发指南:
+      - 概览: development/index.md
+      - 环境配置: development/setup.md
+      - 构建方式: development/build.md
+      - 测试: development/testing.md
+      - 贡献指南: development/contributing.md
+
+  - FAQ:
+      - 概览: faq/index.md
+      - 安装问题: faq/install.md
+      - 仿真问题: faq/simulation.md
+      - 硬件问题: faq/hardware.md
