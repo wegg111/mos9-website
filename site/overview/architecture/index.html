@@ -286,7 +286,7 @@
   <span class="md-ellipsis">
     
   
-    引言
+    项目背景
   
 
     
@@ -462,83 +462,6 @@
     <span class="md-ellipsis">
       
         架构图
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        各层职责
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        机械本体
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        电气与执行层
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        通信框架
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        运动控制层
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        仿真与训练层
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        推荐阅读
       
     </span>
   </a>
@@ -2762,52 +2685,59 @@
 <h1 id="_1">系统总体架构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>本页描述机器人系统从硬件到软件的总体组织方式。</p>
 <h2 id="_2">系统组成<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>整个系统可以拆分为以下几层：</p>
+<p>一般机器人设计都可以分成四个主要的部分：</p>
 <ol>
-<li>机械本体</li>
-<li>电气与执行层</li>
-<li>传感与状态估计</li>
-<li>通信中间件</li>
-<li>运动控制与技能层</li>
-<li>仿真与训练环境</li>
-<li>开发与部署工具链</li>
+<li>
+<p>机械设计：设计构型、自由度配置与分布、构型空间、结构设计、工业设计等。机械设计决定了机器人与物理世界交互所能实现的功能。</p>
+</li>
+<li>
+<p>电气系统设计：供电电路与通讯电路，供电电路包括电池、开关、电压转换等，通讯电路是驱动器、传感器等通讯使用的电路。电气设计保证执行器和传感器能正常运行。</p>
+</li>
+<li>
+<p>通讯系统设计：分为机外通讯和机内通讯两部分。机器人一般会有一个主机，主机和传感器、驱动器或下位机连接，称为机外通讯，通讯方式有多种，比如CAN、USB等有线通讯，WiFi、蓝牙等无线通讯。机内通讯指主机内各个进程之间通讯，有DDS、ROS、ZMQ等框架。</p>
+</li>
+<li>
+<p>运动控制设计：机器人运动控制方式，最终让机器人活动与物理世界交互。</p>
+</li>
 </ol>
 <h2 id="_3">架构图<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[机械本体] --&gt; B[执行器与驱动]
-    B --&gt; C[传感器]
-    C --&gt; D[状态估计]
-    D --&gt; E[通信框架]
-    E --&gt; F[运动控制器]
-    F --&gt; G[技能策略: 行走 / Mimic / 踢球]
-    G --&gt; B
-    H[仿真环境] --&gt; F
-    H --&gt; G</code></pre>
-<h2 id="_4">各层职责<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h2 id="_5">机械本体<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>负责关节布局、自由度设计、结构强度、传动形式与可维护性。</p>
-<h2 id="_6">电气与执行层<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>负责供电、驱动、控制板连接、执行器接口和安全保护。</p>
-<h2 id="_7">通信框架<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>负责不同模块间的数据交换，定义消息格式、传输频率和同步方式。</p>
-<h2 id="_8">运动控制层<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>负责将高层目标转化为执行器命令，包括：</p>
-<ul>
-<li>轨迹生成</li>
-<li>逆运动学</li>
-<li>平衡控制</li>
-<li>步态控制</li>
-<li>技能状态机</li>
-</ul>
-<h2 id="_9">仿真与训练层<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p>负责模型导入、环境搭建、策略训练、评估以及 sim-to-real 迁移。</p>
-<h2 id="_10">推荐阅读<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../hardware-software-map/">硬件与软件映射</a></li>
-<li><a href="../../communication/">通信框架概览</a></li>
-<li><a href="../../control/">运动控制概览</a></li>
-<li><a href="../../simulation/">仿真与模型概览</a></li>
-</ul>
+    A(需求分析与性能目标制定) --&gt; B(机械结构设计)
+
+    A --&gt; H(传感器设计)
+    H --&gt; I1[惯性测量单元IMU]
+    H --&gt; I2[相机]
+
+    B --&gt; B1[构型：自由度配置与分布]
+    B1 --&gt; B2[关节活动范围优化]
+    B2 --&gt; B3[结构设计与轻量化]
+    B --&gt; B4[确定动力学参数]
+    B3 --&gt; B4
+    B4 --&gt; B5[驱动器选型]
+
+    B5 --&gt; C(电路与驱动设计)
+
+    C --&gt; C1[电源管理]
+    C1 --&gt; C2[驱动器驱动电路开发]
+    C2 --&gt; C3[主控与执行单元集成PCB]
+
+    B5 --&gt; D(通信系统设计)
+    D --&gt; D1[驱动器通讯]
+    D1 --&gt; D3[状态反馈与指令下发]
+    D --&gt; D4[融合传感器]
+    D4 --&gt; D3
+    I1 --&gt; D4
+    I2 --&gt; D4
+
+    D3 --&gt; E(运动控制设计)
+    A --&gt; E
+
+    E --&gt; E1[动力学建模]
+    E1 --&gt; E2[算法设计]
+    E2 --&gt; E3[Sim2Sim与Sim2Real部署]
+    C3 --&gt; E3
+
+    E3 --&gt; F[稳定行走与动态踢球验证]</code></pre>
 
 
 

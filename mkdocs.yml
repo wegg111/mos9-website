@@ -64,13 +64,11 @@ extra:
 
 nav:
   - 首页: index.md
-  - 引言: robocup_intro.md
+  - 项目背景: robocup_intro.md
   - 快速开始: quickstart.md
 
   - 系统总览:
       - 总体架构: overview/architecture.md
-      - 硬件与软件映射: overview/hardware-software-map.md
-      - 仓库结构: overview/repo-structure.md
 
   - 机械设计:
       - 概览: mechanical/index.md
