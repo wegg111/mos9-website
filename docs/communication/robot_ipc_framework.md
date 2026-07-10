@@ -4,7 +4,7 @@ Robot-IPC 的代码开源于 GitHub：
 
 - https://github.com/THMOS2025/robot-ipc
 
-本页结合本地源码目录 /Users/wegg/Documents/robotipc/robot-ipc，对 Robot-IPC 的实现原理、Linux 下的共享内存机制、topic 命名方式、数据结构约束、多进程读写流程，以及自定义数据结构的使用方式进行详细说明，并给出对应代码示例。
+本页结合本地源码，对 Robot-IPC 的实现原理、Linux 下的共享内存机制、topic 命名方式、数据结构约束、多进程读写流程，以及自定义数据结构的使用方式进行详细说明，并给出对应代码示例。
 
 ## 1. 项目定位
 

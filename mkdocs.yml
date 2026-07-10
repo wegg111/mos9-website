@@ -72,6 +72,8 @@ nav:
   - 机械设计:
       - 概览: mechanical/index.md
       - 构型设计: mechanical/body-structure.md
+      - 电机选型: mechanical/motor_selection.md
+      - 结构件设计: mechanical/link_design.md
       - 材料与加工: mechanical/materials.md
       - 装配指南: mechanical/assembly.md
 
