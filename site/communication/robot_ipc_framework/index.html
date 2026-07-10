@@ -1,0 +1,3850 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="开源机器人MOS-9，涵盖机械设计、电路系统、通信框架、运动控制、仿真与模型、教程和开发参考">
+      
+      
+      
+        <link rel="canonical" href="https://yourname.github.io/open-robot-docs/communication/robot_ipc_framework/">
+      
+      
+        <link rel="prev" href="../robot_ipc/">
+      
+      
+        <link rel="next" href="../../control/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Robot IPC实现 - MOS-9</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#robot-ipc" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="MOS-9" class="md-header__button md-logo" aria-label="MOS-9" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MOS-9
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Robot IPC实现
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yourname/open-robot-docs" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourname/open-robot-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MOS-9" class="md-nav__button md-logo" aria-label="MOS-9" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MOS-9
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yourname/open-robot-docs" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yourname/open-robot-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robocup_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目背景
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统总览
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统总览
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总体架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机械设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机械设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/body-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本体结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/joints-and-dof/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关节与自由度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/transmission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传动设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    材料与加工
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/assembly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    装配指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电路系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    电路系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electronics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electronics/power/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    供电系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electronics/controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    主控与下位机
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electronics/sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electronics/actuator-driver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电机驱动
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electronics/wiring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线束与接线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electronics/safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安全设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通信框架
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    通信框架
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../motor_communication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电机通讯
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../robot_ipc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程间通讯
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Robot IPC实现
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Robot IPC实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 项目定位
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 仓库结构与代码入口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 仓库结构与代码入口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 整体框架流程图
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Linux 中共享内存是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-host_variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. host_variable 的内部内存布局
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. host_variable 的内部内存布局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 flags 做了什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 为什么要有时间戳
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 多进程读写是怎么实现的
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 多进程读写是怎么实现的">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 写入流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 读取流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-topic-robot-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. topic 在 Robot-IPC 中是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 数据结构为什么必须受限制
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 自定义数据结构如何设计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 自定义数据结构如何设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 固定长度结构体
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-packed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 为什么推荐 packed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 变长数据结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. topic 代码示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. topic 代码示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 C 语言写端
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 C 语言读端
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Python 写端与读端示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 自定义结构体代码示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 自定义结构体代码示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 C++ 固定长度结构体示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 变长结构体示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Python 自定义结构体示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Python / 跨语言自定义结构体示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Python / 跨语言自定义结构体示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-python-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Python API 的两种模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-python-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 为什么默认 Python 对象不能直接和 C 互通
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 C 端结构体
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Python 端对应结构体
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-c-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 C 写入，Python 读取示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-python-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 Python 写入，C 读取示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-c-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7 C 和 Python 互通时的注意事项
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-host_function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. host_function 是怎么实现的
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 设计上的优点与限制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. 设计上的优点与限制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 优点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 实践建议
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动控制
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    运动控制
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/kinematics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/dynamics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动力学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/state-machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状态机
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/gait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    步态控制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/mimic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mimic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/kicking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    踢球
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../control/amp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMP 行走
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仿真与模型
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    仿真与模型
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/urdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    URDF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/xml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/usd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资源组织
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/sim2real/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sim-to-Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    教程
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    教程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/bringup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从零启动系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/add-a-joint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    添加一个关节
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/add-a-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    添加一个传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/train-walking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    训练行走策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/deploy-kick-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署踢球策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    参考
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    消息接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topics 与服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贡献指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FAQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仿真问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    硬件问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    首页
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    通信框架
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/yourname/open-robot-docs/edit/main/docs/communication/robot_ipc_framework.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/yourname/open-robot-docs/raw/main/docs/communication/robot_ipc_framework.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="robot-ipc">Robot-IPC 框架设计与实现<a class="headerlink" href="#robot-ipc" title="Permanent link">&para;</a></h1>
+<p>Robot-IPC 的代码开源于 GitHub：</p>
+<ul>
+<li>https://github.com/THMOS2025/robot-ipc</li>
+</ul>
+<p>本页结合本地源码目录 /Users/wegg/Documents/robotipc/robot-ipc，对 Robot-IPC 的实现原理、Linux 下的共享内存机制、topic 命名方式、数据结构约束、多进程读写流程，以及自定义数据结构的使用方式进行详细说明，并给出对应代码示例。</p>
+<h2 id="1">1. 项目定位<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>Robot-IPC 的目标不是替代 ROS 生态，也不是构建分布式中间件，而是为单机器人主机内部提供一个更轻量、更低延迟的进程间通信方案。</p>
+<p>从源码和 README 可以看到，它围绕两个核心抽象组织：</p>
+<ul>
+<li>host_variable：跨进程共享“最新值”的共享内存变量</li>
+<li>host_function：跨进程调用函数的轻量 RPC 机制</li>
+</ul>
+<p>其中：</p>
+<ul>
+<li>host_variable 适合 IMU、关节状态、控制指令、图像元数据等“读最新状态”的场景</li>
+<li>host_function 适合配置请求、一次性服务调用、状态查询等“发请求等返回”的场景</li>
+</ul>
+<p>对于机器人本体内部通信，最常见也是最关键的是 host_variable，因此本页重点介绍共享内存路径。</p>
+<h2 id="2">2. 仓库结构与代码入口<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>本地仓库中与本文最相关的目录如下：</p>
+<ul>
+<li>include/host_variable.h：共享内存变量 C 接口</li>
+<li>src/host_variable.c：共享内存变量底层实现</li>
+<li>include/host_function_caller.h：远程调用客户端接口</li>
+<li>include/host_function_receiver.h：远程调用服务端接口</li>
+<li>src/host_function_caller.c：命名管道调用端实现</li>
+<li>src/host_function_receiver.c：epoll + 线程的服务端实现</li>
+<li>include/robot_ipc.hpp：C++ 封装与类型安全检查</li>
+<li>examples/host_variable：最简单的 topic 读写示例</li>
+<li>examples/host_variable_struct：结构体与变长数据示例</li>
+<li>examples/cross_language_structs.cpp：跨语言结构体布局示例</li>
+<li>docs/apis.md：官方 API 说明</li>
+</ul>
+<p>从这个结构就可以看出，Robot-IPC 的核心很克制：</p>
+<ul>
+<li>一条主线是共享内存变量</li>
+<li>一条主线是命名管道函数调用</li>
+<li>外层再提供 C++ 封装和示例</li>
+</ul>
+<p>没有中心节点、没有发现服务、没有序列化框架、没有 QoS 协商，也没有分布式路由层。</p>
+<h3 id="21">2.1 整体框架流程图<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>下面这张图从系统视角概括了 Robot-IPC 的整体工作方式。</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph ProcC[C 进程作用域]
+        direction TB
+        CApp[C 业务代码]
+        CStruct[C struct&lt;br/&gt;固定内存布局]
+        CApp --&gt; CStruct
+    end
+
+    subgraph API[Robot-IPC 接口层]
+        direction TB
+        HV[Variable 接口&lt;br/&gt;C: host_variable&lt;br/&gt;Python: HostVariable]
+        HF[Function 接口&lt;br/&gt;C: host_function&lt;br/&gt;Python: HostFunction]
+    end
+
+    subgraph LinuxIPC[Linux IPC 共享域]
+        direction TB
+        SHM[POSIX 共享内存域&lt;br/&gt;shm_open + ftruncate + mmap]
+        META[元数据与缓冲区&lt;br/&gt;flags + timestamp + latest buffer]
+        FIFO[命名管道域&lt;br/&gt;/tmp/robot_ipc/*]
+        SHM --&gt; META
+    end
+
+    subgraph ProcPy[Python 进程作用域]
+        direction TB
+        PyApp[Python 业务代码]
+        PyStruct[ctypes.Structure&lt;br/&gt;或 Python 对象]
+        PyApp --&gt; PyStruct
+    end
+
+    CApp --&gt; HV
+    CApp --&gt; HF
+    PyApp --&gt; HV
+    PyApp --&gt; HF
+
+    CStruct --&gt; HV
+    PyStruct --&gt; HV
+
+    HV &lt;--&gt; SHM
+    HF &lt;--&gt; FIFO
+
+    CStruct -.跨语言时布局必须一致.-&gt; PyStruct</code></pre>
+<p>这张图把框架拆成三个作用域：</p>
+<ul>
+<li>C 进程作用域：业务代码在本进程里准备 C struct 或参数，然后调用 Robot-IPC。</li>
+<li>Python 进程作用域：业务代码在本进程里准备 ctypes.Structure 或 Python 对象，然后调用 Robot-IPC。</li>
+<li>Linux IPC 共享域：真正跨进程共享的是 Linux 提供的共享内存和命名管道资源。</li>
+</ul>
+<p>图里最重要的边界是这一条：</p>
+<ul>
+<li>C 和 Python 调用的是同一组抽象接口，也就是 variable 和 function 这两个概念，只是各自语言里的封装名字不同。</li>
+<li>variable 最终都落到 Linux 共享内存域。</li>
+<li>function 最终都落到 Linux 命名管道域。</li>
+<li>如果 C 和 Python 要通过 variable 直接互通，就必须让 Python 端使用 ctypes.Structure，并与 C struct 保持相同的字段顺序、类型和对齐方式。</li>
+</ul>
+<h2 id="3-linux">3. Linux 中共享内存是什么<a class="headerlink" href="#3-linux" title="Permanent link">&para;</a></h2>
+<p>在 Linux 中，Robot-IPC 的 host_variable 基于 POSIX shared memory 实现。它的关键系统调用是：</p>
+<ul>
+<li>shm_open：创建或打开共享内存对象</li>
+<li>ftruncate：把共享内存对象扩展到指定大小</li>
+<li>mmap：把这块共享内存映射到当前进程的虚拟地址空间</li>
+<li>munmap：解除映射</li>
+</ul>
+<p>Robot-IPC 在 src/host_variable.c 中的创建流程大致是：</p>
+<ol>
+<li>用 shm_open(name, O_CREAT | O_EXCL | O_RDWR, 0600) 尝试创建共享内存对象。</li>
+<li>如果发现对象已经存在，再用 shm_open(name, O_RDWR, 0600) 打开已有对象。</li>
+<li>用 ftruncate(fd, full_size) 把对象扩展到完整大小。</li>
+<li>用 mmap(..., MAP_SHARED, ...) 把它映射到进程地址空间。</li>
+<li>如果当前进程是创建者，就初始化元数据、flags 和时间戳数组。</li>
+<li>如果当前进程只是后来连接的使用者，就等待 created 标志置位，再开始访问。</li>
+</ol>
+<p>这意味着多个进程虽然地址空间彼此隔离，但它们都可以把同一个共享内存对象映射到自己的地址空间中。之后的读写本质上就不再是“消息发送”，而是“对同一块物理内存的并发访问”。</p>
+<p>这也是 Robot-IPC 延迟低的根本原因：</p>
+<ul>
+<li>不经过网络协议栈</li>
+<li>不需要 socket 收发</li>
+<li>不需要中心转发进程</li>
+<li>不需要对每次读取都重新分配对象</li>
+</ul>
+<p>在 Linux 上，这类共享内存对象通常可以从 /dev/shm 中观察到，因此排查问题时可以直接查看：</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span>/dev/shm
+</code></pre></div>
+<h2 id="4-host_variable">4. host_variable 的内部内存布局<a class="headerlink" href="#4-host_variable" title="Permanent link">&para;</a></h2>
+<p>Robot-IPC 并不是简单地把一份数据直接放到共享内存里，而是设计了一套“元数据 + 多缓冲区”的布局。</p>
+<p>在 src/config.h 中，当前缓冲区数量定义为：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#define SHM_BUFFER_CNT 4</span>
+</code></pre></div>
+<p>在 src/host_variable.c 中，共享内存对象对应的内部结构大致可以概括为：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">_s_host_variable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">meta</span><span class="p">;</span><span class="w">                  </span><span class="c1">// 创建状态等元数据</span>
+<span class="w">    </span><span class="n">atomic</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="c1">// 当前目标缓冲区 + 各缓冲区锁状态</span>
+<span class="w">    </span><span class="n">timestamp</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="w">          </span><span class="c1">// 每个缓冲区对应一个时间戳</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">data</span><span class="p">[];</span><span class="w">        </span><span class="c1">// 真正的数据区，按 4 份缓冲连续排布</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>它不是单缓冲，而是 4 份数据缓冲。这样做的目的，是让“读最新值”和“写新值”尽量少互相阻塞。</p>
+<h3 id="41-flags">4.1 flags 做了什么<a class="headerlink" href="#41-flags" title="Permanent link">&para;</a></h3>
+<p>源码里把多个状态压缩在一个 64 位原子变量里：</p>
+<ul>
+<li>低位的若干个 4-bit 段：记录每个缓冲区的锁计数</li>
+<li>最高 4 bit：记录当前最新可读缓冲区，也就是 target</li>
+</ul>
+<p>每个缓冲区的 4-bit 状态有两个用途：</p>
+<ul>
+<li>不是 0xF 时，表示当前有多少个读者正在读这个缓冲区</li>
+<li>等于 0xF 时，表示这个缓冲区被写者临时占用</li>
+</ul>
+<p>这样就能在没有全局互斥锁的前提下，用原子 CAS 操作完成读写协调。</p>
+<h3 id="42">4.2 为什么要有时间戳<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>每个缓冲区还带一个时间戳。写入时会用 CLOCK_BOOTTIME 生成时间戳，并写到当前缓冲区对应的 timestamp 槽位。</p>
+<p>这个时间戳的作用不是给用户看，而是用于内部判断“这次写入是否真的比当前最新值更新”。如果某次写入完成时发现已有更新的数据发布了，那么这次写入就不会把自己提升为最新 target。</p>
+<p>这使得并发写入场景下，“最新数据”这个语义更稳定。</p>
+<figure class="ros-figure">
+    <img src="../../images/ipc1.png" alt="ipc1" />
+    <figcaption>Robot IPC 数据结构</figcaption>
+</figure>
+
+<h2 id="5">5. 多进程读写是怎么实现的<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 写入流程<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p>write_host_variable 的核心逻辑可以概括为：</p>
+<ol>
+<li>读取 flags，找一个空闲且不是当前 target 的缓冲区。</li>
+<li>用 CAS 把该缓冲区的状态置为 0xF，表示写锁占用。</li>
+<li>把时间戳写到该缓冲区的 timestamp 槽位。</li>
+<li>把用户数据 memcpy 到该缓冲区的数据区。</li>
+<li>再次比较时间戳，如果自己仍然是最新，就把高位 target 切换到当前缓冲区。</li>
+<li>最后释放该缓冲区写锁，使之变成新的可读缓冲区。</li>
+</ol>
+<p>这是一种典型的“写到新缓冲区，再原子切换最新指针”的设计。好处是：</p>
+<ul>
+<li>读者总能看到一份完整数据</li>
+<li>不会读到一半被写者改坏</li>
+<li>写者不需要等待所有读者退出当前 target，直接写到另一块空闲缓冲区即可</li>
+</ul>
+<figure class="ros-figure">
+    <img src="../../images/ipc3.png" alt="ipc3" />
+</figure>
+<figure class="ros-figure">
+    <img src="../../images/ipc4.png" alt="ipc4" />
+</figure>
+<figure class="ros-figure">
+    <img src="../../images/ipc5.png" alt="ipc5" />
+    <figcaption>Robot IPC 写操作</figcaption>
+</figure>
+
+<p>到这里能保证数据块不会被多个进程同时写入，但是保证不了Meta指针不会被同时写，所以我们使用原子操作对Meta指针和时间戳来进行写操作，这样就能保证多个进程不会冲突。</p>
+<figure class="ros-figure">
+    <img src="../../images/ipc6.png" alt="ipc6" />
+    <figcaption>Robot IPC 原子操作</figcaption>
+</figure>
+
+<h3 id="52">5.2 读取流程<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<p>read_host_variable 的逻辑更简单：</p>
+<ol>
+<li>从 flags 中读出当前 target。</li>
+<li>用 CAS 给 target 对应缓冲区的读锁计数加 1。</li>
+<li>从该缓冲区 memcpy 到用户传入的本地缓冲区。</li>
+<li>读完后把读锁计数减 1。</li>
+</ol>
+<p>这个模型的关键点是：</p>
+<ul>
+<li>读者读的是“当前最新缓冲区”的一个快照</li>
+<li>读者拿到读锁后，写者不会覆盖这个缓冲区</li>
+<li>读者永远不需要知道之前的历史版本</li>
+</ul>
+<p>所以它天然适合机器人场景中的“只关心最新状态”问题，例如：</p>
+<ul>
+<li>当前 IMU 姿态</li>
+<li>当前关节编码器值</li>
+<li>当前控制器输出</li>
+<li>当前感知结果</li>
+</ul>
+<figure class="ros-figure">
+    <img src="../../images/ipc2.png" alt="ipc2" />
+    <figcaption>Robot IPC 读操作</figcaption>
+</figure>
+
+<h2 id="6-topic-robot-ipc">6. topic 在 Robot-IPC 中是什么<a class="headerlink" href="#6-topic-robot-ipc" title="Permanent link">&para;</a></h2>
+<p>Robot-IPC 没有实现 ROS/DDS 那样的显式 Topic 类型系统，也没有中心注册表。在 Robot-IPC 里，所谓 topic，本质上就是一段“有名字的共享内存对象”或“有名字的函数通道”。这个名字由用户自己定义，并在所有读写进程中保持一致。例如：</p>
+<ul>
+<li>imu_state</li>
+<li>joint_state</li>
+<li>camera_front_image_meta</li>
+<li>gait_command</li>
+<li>localization_pose</li>
+</ul>
+<p>对于 host_variable：</p>
+<ul>
+<li>link_host_variable(name, size) 中的 name 就是 topic 名称</li>
+</ul>
+<p>对于 host_function：</p>
+<ul>
+<li>attach_host_function(name, ...) 和 link_host_function(name, ...) 中的 name 就是函数通道名称</li>
+<li>源码会在 /tmp/robot_ipc/ 下创建两个 FIFO：name_req 和 name_res</li>
+</ul>
+<p>也就是说，host_function 的名字最终会映射为：</p>
+<div class="highlight"><pre><span></span><code>/tmp/robot_ipc/&lt;name&gt;_req
+/tmp/robot_ipc/&lt;name&gt;_res
+</code></pre></div>
+<p>虽然框架本身只把名字当作字符串处理，但实际工程中建议统一命名规则，否则多人协作时很容易失控。建议遵循以下规则：</p>
+<ol>
+<li>名字稳定，不要运行时频繁变化。</li>
+<li>只使用字母、数字、下划线，避免空格和复杂符号。</li>
+<li>用模块前缀表达归属。</li>
+<li>名称体现数据含义，而不是代码实现细节。</li>
+<li>对同类数据区分“状态”“命令”“调试”。</li>
+</ol>
+<h2 id="7">7. 数据结构为什么必须受限制<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>其他框架比如ZMQ处理不同语言的数据的方案是序列化，但是我们不希望再引入序列化开销，所以我们自定义数据内存布局来实现跨语言通讯。host_variable 底层只是共享一块原始内存，并通过 memcpy 完成读写。因此它不会理解你的对象语义，只知道“把这几字节拷过去”。这决定了它适合的数据类型必须满足：</p>
+<ul>
+<li>内存布局固定</li>
+<li>可以直接按字节复制</li>
+<li>不包含进程私有地址</li>
+<li>不依赖构造函数、析构函数、虚函数等复杂语义</li>
+</ul>
+<p>在 C 里，这通常意味着：基本类型、定长数组、纯 struct。在 C++ 里，源码通过 include/robot_ipc.hpp 做了编译期检查，要求类型至少满足：</p>
+<ul>
+<li>standard layout</li>
+<li>trivially copyable</li>
+<li>trivially destructible</li>
+<li>不能是指针类型或引用类型</li>
+</ul>
+<p>因此，下面这些类型适合直接放进 Robot-IPC：</p>
+<ul>
+<li>int、float、double</li>
+<li>固定大小的数组</li>
+<li>不带指针的简单 struct</li>
+<li>经过 packed 处理的跨语言结构体</li>
+</ul>
+<p>下面这些则不适合直接共享：</p>
+<ul>
+<li>std::string</li>
+<li>std::vector</li>
+<li>含裸指针的结构体</li>
+<li>含虚函数的类</li>
+<li>依赖堆内存的复杂对象</li>
+</ul>
+<p>原因很直接：例如 std::vector 里保存的是当前进程自己的堆指针，另一个进程拿到同样的字节后，指针地址并不指向有效对象。</p>
+<h2 id="8">8. 自定义数据结构如何设计<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="81">8.1 固定长度结构体<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
+<p>最推荐的方式是定义固定长度、无指针、无填充歧义的结构体。</p>
+<p>例如一个 IMU topic：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">ImuState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int64_t</span><span class="w"> </span><span class="n">timestamp_ns</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">quat_w</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">quat_x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">quat_y</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">quat_z</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">gyro_x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">gyro_y</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">gyro_z</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">acc_x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">acc_y</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">acc_z</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>这个结构体适合直接作为一个 topic 的数据载体。</p>
+<h3 id="82-packed">8.2 为什么推荐 packed<a class="headerlink" href="#82-packed" title="Permanent link">&para;</a></h3>
+<p>Robot-IPC 的 C++ 封装会检查“能不能安全 memcpy”，但它不能完全替你解决“跨语言或跨编译器布局是否一致”的问题。</p>
+<p>所以当你计划让：</p>
+<ul>
+<li>C 与 C++ 互通</li>
+<li>C++ 与 Python 互通</li>
+<li>不同编译器之间互通</li>
+</ul>
+<p>最好显式使用：</p>
+<ul>
+<li><strong>attribute</strong>((packed))</li>
+<li>或 #pragma pack(push, 1)</li>
+</ul>
+<p>这样可以避免编译器自动填充造成的字段偏移不一致。</p>
+<h3 id="83">8.3 变长数据结构<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
+<p>Robot-IPC 也支持“总容量固定，但实际写入字节数可变”的模式。examples/host_variable_struct 中就展示了这种做法。</p>
+<p>它的关键不是直接共享真正动态对象，而是：</p>
+<ul>
+<li>先为共享内存分配一个固定上限</li>
+<li>再用 op_size 指明这次实际写入了多少字节</li>
+</ul>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">DataFormat</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">appendix</span><span class="p">[];</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>使用时需要区分两个大小：</p>
+<ul>
+<li>size：共享内存总容量</li>
+<li>op_size：这次真正读写的字节数</li>
+</ul>
+<p>这相当于“定长缓冲区 + 可变有效载荷”的设计，适合：</p>
+<ul>
+<li>调试字符串</li>
+<li>小型二进制块</li>
+<li>固定上限的额外附加信息</li>
+</ul>
+<p>但这类设计需要你自己维护长度边界，因此工程里通常更建议把“长度字段”显式写进结构体。</p>
+<h2 id="9-topic">9. topic 代码示例<a class="headerlink" href="#9-topic" title="Permanent link">&para;</a></h2>
+<p>下面给出一个最小可用的 topic 例子。它与 examples/host_variable/writer.c 和 reader.c 的风格一致，只是名字和注释做了更贴近机器人场景的整理。</p>
+<h3 id="91-c">9.1 C 语言写端<a class="headerlink" href="#91-c" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;host_variable.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">host_variable</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">link_host_variable</span><span class="p">(</span><span class="s">&quot;imu_counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">topic</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;link_host_variable failed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">write_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;write imu_counter = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">unlink_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;imu_counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="92-c">9.2 C 语言读端<a class="headerlink" href="#92-c" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;host_variable.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">host_variable</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">link_host_variable</span><span class="p">(</span><span class="s">&quot;imu_counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">topic</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;link_host_variable failed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">read_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;read imu_counter = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">unlink_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;imu_counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这个例子体现了 Robot-IPC 的基本使用方式：</p>
+<ul>
+<li>写端和读端不需要谁先启动</li>
+<li>两边只要 topic 名称一致、size 一致，就能连上同一块共享内存</li>
+<li>读端拿到的永远是当前最新值，而不是历史消息队列</li>
+</ul>
+<h3 id="93-python">9.3 Python 写端与读端示例<a class="headerlink" href="#93-python" title="Permanent link">&para;</a></h3>
+<p>Robot-IPC 的 Python 接口提供了更高层的 HostVariable 封装。对于纯 Python 进程之间通信，最简单的用法是直接把 Python 对象赋给 data 属性。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">robot_ipc</span><span class="w"> </span><span class="kn">import</span> <span class="n">HostVariable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">HostVariable</span><span class="p">(</span><span class="s2">&quot;imu_status_py&quot;</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">4096</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">topic</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">(),</span>
+            <span class="s2">&quot;roll&quot;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+            <span class="s2">&quot;pitch&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">,</span>
+            <span class="s2">&quot;yaw&quot;</span><span class="p">:</span> <span class="mf">1.57</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+</code></pre></div>
+<p>对应读端可以这样写：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">robot_ipc</span><span class="w"> </span><span class="kn">import</span> <span class="n">HostVariable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">HostVariable</span><span class="p">(</span><span class="s2">&quot;imu_status_py&quot;</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">4096</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">latest</span> <span class="o">=</span> <span class="n">topic</span><span class="o">.</span><span class="n">data</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">latest</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+<p>这种写法最方便，但它的底层通常依赖 Python 对象的 pickle 表示，因此更适合：</p>
+<ul>
+<li>Python 进程和 Python 进程互通</li>
+<li>调试阶段快速验证功能</li>
+<li>数据量不大、结构变化频繁的场景</li>
+</ul>
+<p>如果目标是和 C 或 C++ 进程互通，就不建议使用这种默认模式，而应该使用固定结构体布局模式。</p>
+<h2 id="10">10. 自定义结构体代码示例<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<h3 id="101-c">10.1 C++ 固定长度结构体示例<a class="headerlink" href="#101-c" title="Permanent link">&para;</a></h3>
+<p>这个例子适合机器人中最常见的状态 topic。</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;robot_ipc.hpp&quot;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">JointState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int64_t</span><span class="w"> </span><span class="n">timestamp_ns</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">position</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">velocity</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">torque</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">motor_id</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RobotIPC</span><span class="o">::</span><span class="n">HostVariable</span><span class="o">&lt;</span><span class="n">JointState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">topic</span><span class="p">(</span><span class="s">&quot;joint_state_motor_1&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">JointState</span><span class="w"> </span><span class="n">out</span><span class="p">{};</span>
+<span class="w">    </span><span class="n">out</span><span class="p">.</span><span class="n">timestamp_ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1234567890</span><span class="p">;</span>
+<span class="w">    </span><span class="n">out</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.2f</span><span class="p">;</span>
+<span class="w">    </span><span class="n">out</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3f</span><span class="p">;</span>
+<span class="w">    </span><span class="n">out</span><span class="p">.</span><span class="n">torque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.8f</span><span class="p">;</span>
+<span class="w">    </span><span class="n">out</span><span class="p">.</span><span class="n">motor_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">topic</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">JointState</span><span class="w"> </span><span class="n">in</span><span class="p">{};</span>
+<span class="w">    </span><span class="n">topic</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">in</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>对应源码里的 C++ 封装会在编译期帮你检查这个类型是否适合做 IPC。</p>
+<h3 id="102">10.2 变长结构体示例<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
+<p>这个例子来自仓库 examples/host_variable_struct 的思路，适合“主体固定 + 尾部附加可变文本”的场景。</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;host_variable.h&quot;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">DebugPacket</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">tag</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">payload</span><span class="p">[];</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">payload_capacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">total_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">DebugPacket</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">payload_capacity</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">DebugPacket</span><span class="w"> </span><span class="o">*</span><span class="n">pkt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">total_size</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pkt</span><span class="o">-&gt;</span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">pkt</span><span class="o">-&gt;</span><span class="n">tag</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;walk_debug&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">pkt</span><span class="o">-&gt;</span><span class="n">payload</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;left foot slip detected&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">host_variable</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">link_host_variable</span><span class="p">(</span><span class="s">&quot;debug_packet&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_size</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">topic</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;link_host_variable failed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">used_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">DebugPacket</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">pkt</span><span class="o">-&gt;</span><span class="n">payload</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">write_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">pkt</span><span class="p">,</span><span class="w"> </span><span class="n">total_size</span><span class="p">,</span><span class="w"> </span><span class="n">used_size</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">unlink_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;debug_packet&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_size</span><span class="p">);</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">pkt</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这里最关键的是两点：</p>
+<ul>
+<li>total_size 决定共享内存总容量</li>
+<li>used_size 决定本次真正写入了多少字节</li>
+</ul>
+<p>如果读写双方要长期维护这类数据结构，建议再显式加入 payload_length 字段，避免只依赖字符串结束符或隐含长度规则。</p>
+<h3 id="103-python">10.3 Python 自定义结构体示例<a class="headerlink" href="#103-python" title="Permanent link">&para;</a></h3>
+<p>如果是 Python 进程之间，但又希望数据结构固定、避免 pickle 带来的额外不确定性，也可以在 Python 端使用 ctypes.Structure。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">robot_ipc</span><span class="w"> </span><span class="kn">import</span> <span class="n">HostVariable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">JointState</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;timestamp_ns&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int64</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;velocity&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;torque&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;motor_id&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint8</span><span class="p">),</span>
+    <span class="p">]</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">HostVariable</span><span class="p">(</span><span class="s2">&quot;joint_state_motor_1&quot;</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="n">JointState</span><span class="p">)</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="n">JointState</span><span class="p">()</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">timestamp_ns</span> <span class="o">=</span> <span class="mi">1234567890</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="mf">1.2</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">torque</span> <span class="o">=</span> <span class="mf">0.8</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">motor_id</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">topic</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">out</span>
+
+    <span class="n">latest</span> <span class="o">=</span> <span class="n">topic</span><span class="o">.</span><span class="n">data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">latest</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="p">,</span> <span class="n">latest</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">latest</span><span class="o">.</span><span class="n">velocity</span><span class="p">,</span> <span class="n">latest</span><span class="o">.</span><span class="n">torque</span><span class="p">,</span> <span class="n">latest</span><span class="o">.</span><span class="n">motor_id</span><span class="p">)</span>
+</code></pre></div>
+<p>这种方式的价值在于：</p>
+<ul>
+<li>字段布局固定</li>
+<li>更容易和 C/C++ 对齐</li>
+<li>不再依赖 Python 任意对象的序列化结果</li>
+</ul>
+<h2 id="11-python">11. Python / 跨语言自定义结构体示例<a class="headerlink" href="#11-python" title="Permanent link">&para;</a></h2>
+<p>仓库 README、docs/python3-apis-cn.md 和 examples/host_variable_raw_python 都强调了一点：Python 与 C/C++ 互通时，必须使用固定内存布局，而不能直接共享任意 Python 对象。</p>
+<h3 id="111-python-api">11.1 Python API 的两种模式<a class="headerlink" href="#111-python-api" title="Permanent link">&para;</a></h3>
+<p>Python 绑定实际上有两种工作模式：</p>
+<ol>
+<li>默认 Python 对象模式。</li>
+<li>ctypes.Structure 固定布局模式。</li>
+</ol>
+<p>默认模式下，Python 接口会把 Python 对象转换成 Python 自己可恢复的数据表示。这种方式适合 Python 之间快速互通，但它并不等价于 C 结构体的原始字节布局。</p>
+<p>因此，C 和 Python 互通时必须遵守一个硬约束：</p>
+<ul>
+<li>不能让 C 端直接读取 Python 默认对象模式写入的内容</li>
+<li>必须让 Python 端显式声明 data_format=ctypes.Structure</li>
+<li>Python 结构体布局必须与 C 结构体逐字段一致</li>
+</ul>
+<p>也就是说，C/Python 互通的前提不是“topic 名字一样”就够了，而是下面四项都要一致：</p>
+<ul>
+<li>topic 名字一致</li>
+<li>总字节大小一致</li>
+<li>字段顺序一致</li>
+<li>字段类型和对齐方式一致</li>
+</ul>
+<h3 id="112-python-c">11.2 为什么默认 Python 对象不能直接和 C 互通<a class="headerlink" href="#112-python-c" title="Permanent link">&para;</a></h3>
+<p>原因在于两边对“数据”的理解不同。</p>
+<p>C 端的 host_variable 本质上只知道一件事：</p>
+<ul>
+<li>从共享内存中拷出 N 个字节</li>
+<li>或把 N 个字节写回共享内存</li>
+</ul>
+<p>它完全不知道字节背后是不是字典、列表、字符串对象，也不知道 Python 的对象头、引用计数、指针和内部布局。</p>
+<p>而 Python 默认对象模式下写进去的内容，并不是一个稳定的 C struct 内存布局。因此 C 端即使读到了这些字节，也无法按 struct 正确解释。</p>
+<p>所以，C/Python 互通不是“Python 能写共享内存，C 就一定能读”，而是“Python 必须按照 C struct 的布局去写，C 才能正确读取”。</p>
+<h3 id="113-c">11.3 C 端结构体<a class="headerlink" href="#113-c" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">SensorData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int64_t</span><span class="w"> </span><span class="n">timestamp</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">temperature</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">humidity</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor_id</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="114-python">11.4 Python 端对应结构体<a class="headerlink" href="#114-python" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SensorData</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int64</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;humidity&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;sensor_id&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">),</span>
+    <span class="p">]</span>
+</code></pre></div>
+<p>只有当两端字段顺序、类型、对齐方式、总大小完全一致时，跨语言共享内存读取才是可靠的。</p>
+<h3 id="115-c-python">11.5 C 写入，Python 读取示例<a class="headerlink" href="#115-c-python" title="Permanent link">&para;</a></h3>
+<p>下面的例子与仓库 examples/host_variable_raw_python 的思路一致。</p>
+<p>先定义 C 端结构体并写入：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;host_variable.h&quot;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">DataFormat</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">appendix</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">DataFormat</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">    </span><span class="n">out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">appendix</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pypy&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">host_variable</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">link_host_variable</span><span class="p">(</span><span class="s">&quot;host_variable_struct&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">out</span><span class="p">));</span>
+<span class="w">    </span><span class="n">write_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">out</span><span class="p">));</span>
+<span class="w">    </span><span class="n">unlink_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;host_variable_struct&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">out</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>再在 Python 端按相同布局读取：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">robot_ipc</span><span class="w"> </span><span class="kn">import</span> <span class="n">HostVariable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DataFormat</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span> <span class="o">*</span> <span class="mi">10</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;appendix&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span> <span class="o">*</span> <span class="mi">32</span><span class="p">),</span>
+    <span class="p">]</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">HostVariable</span><span class="p">(</span><span class="s2">&quot;host_variable_struct&quot;</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="n">DataFormat</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">topic</span><span class="o">.</span><span class="n">data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">appendix</span><span class="p">)</span>
+</code></pre></div>
+<p>这里之所以能互通，是因为：</p>
+<ul>
+<li>topic 名字都是 host_variable_struct</li>
+<li>C 结构体和 Python ctypes 结构体总大小相同</li>
+<li>所有字段的偏移相同</li>
+<li>两边都禁用了不一致的自动填充</li>
+</ul>
+<h3 id="116-python-c">11.6 Python 写入，C 读取示例<a class="headerlink" href="#116-python-c" title="Permanent link">&para;</a></h3>
+<p>反过来也一样，Python 端可以写入 ctypes.Structure，C 端按同样布局读取。</p>
+<p>Python 写端：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">robot_ipc</span><span class="w"> </span><span class="kn">import</span> <span class="n">HostVariable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DataFormat</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span> <span class="o">*</span> <span class="mi">10</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;appendix&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span> <span class="o">*</span> <span class="mi">32</span><span class="p">),</span>
+    <span class="p">]</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="n">HostVariable</span><span class="p">(</span><span class="s2">&quot;host_variable_struct&quot;</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="n">DataFormat</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">DataFormat</span><span class="p">()</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">123</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;c_python&quot;</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">appendix</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;shared_memory&quot;</span>
+
+    <span class="n">topic</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">req</span>
+</code></pre></div>
+<p>C 读端：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;host_variable.h&quot;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">DataFormat</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">appendix</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">DataFormat</span><span class="w"> </span><span class="n">in</span><span class="p">;</span>
+<span class="w">    </span><span class="n">host_variable</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">link_host_variable</span><span class="p">(</span><span class="s">&quot;host_variable_struct&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">in</span><span class="p">));</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">read_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">in</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;x=%d y=%s appendix=%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="n">appendix</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">unlink_host_variable</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;host_variable_struct&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">in</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="117-c-python">11.7 C 和 Python 互通时的注意事项<a class="headerlink" href="#117-c-python" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Python 端必须使用 ctypes.Structure，而不是普通 dict、list、numpy 对象。</li>
+<li>Python 端要设置 <em>pack</em> = 1，对应 C 端的 packed 布局。</li>
+<li>C 端尽量使用 int32_t、uint8_t、int64_t 这类固定宽度类型，避免 long 这类平台相关类型。</li>
+<li>两边必须严格使用同一个 topic 名称。</li>
+<li>两边必须使用同一个总大小；对于 Python 的 HostVariable，也要让内部使用的结构体大小与 C 端完全一致。</li>
+<li>不要在共享结构体中放指针、std::string、list 这类带间接引用的数据。</li>
+<li>读端最好一次性把 topic.data 取出到局部变量，再访问字段，避免跨多个刷新周期读取到不一致快照。</li>
+</ol>
+<p>如果满足这些约束，C 和 Python 的互通本质上就变成了：</p>
+<ul>
+<li>两边共享同一块内存</li>
+<li>两边用同一份字节布局解释这块内存</li>
+</ul>
+<p>这正是 Robot-IPC 支持跨语言共享的根本原理。</p>
+<h2 id="12-host_function">12. host_function 是怎么实现的<a class="headerlink" href="#12-host_function" title="Permanent link">&para;</a></h2>
+<p>虽然本文重点是 topic 共享内存，但 Robot-IPC 还提供了 host_function，用于轻量级跨进程函数调用。</p>
+<p>它并不使用共享内存，而是基于 Linux named pipe：</p>
+<ul>
+<li>调用端：src/host_function_caller.c</li>
+<li>服务端：src/host_function_receiver.c</li>
+</ul>
+<p>实现方式是：</p>
+<ol>
+<li>调用端 link_host_function(name, sz_arg, sz_ret)。</li>
+<li>底层在 /tmp/robot_ipc/ 下打开两个 FIFO。</li>
+<li>调用端把参数写入 <name>_req。</li>
+<li>服务端线程通过 epoll 监听多个 req FIFO。</li>
+<li>收到请求后，读取参数，调用绑定函数。</li>
+<li>如果有返回值，就写入 <name>_res。</li>
+<li>调用端再从响应 FIFO 中读取返回结果。</li>
+</ol>
+<p>这类机制比共享内存慢一些，但很适合：</p>
+<ul>
+<li>配置下发</li>
+<li>控制器重置</li>
+<li>请求一次性计算</li>
+<li>远程查询状态</li>
+</ul>
+<p>它和 host_variable 的职责边界很清晰：</p>
+<ul>
+<li>最新状态共享用 host_variable</li>
+<li>请求/响应语义用 host_function</li>
+</ul>
+<h2 id="13">13. 设计上的优点与限制<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<h3 id="131">13.1 优点<a class="headerlink" href="#131" title="Permanent link">&para;</a></h3>
+<ul>
+<li>数据路径短，延迟低</li>
+<li>只共享最新值，语义直接</li>
+<li>多缓冲 + 原子状态机，适合高频读写</li>
+<li>不依赖 ROS master、DDS discovery 或消息代理</li>
+<li>C/C++ 使用成本低</li>
+</ul>
+<h3 id="132">13.2 限制<a class="headerlink" href="#132" title="Permanent link">&para;</a></h3>
+<ul>
+<li>没有历史消息队列</li>
+<li>没有内建序列化协议</li>
+<li>没有自动 schema 管理</li>
+<li>读写双方必须严格约定同一个名字和同一个数据布局</li>
+<li>复杂对象需要用户自己拆成可共享的平坦结构</li>
+</ul>
+<p>所以它并不适合所有问题，但非常适合机器人机内“共享最新状态”的核心数据链路。</p>
+<h2 id="14">14. 实践建议<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
+<p>如果要在机器人项目中大规模使用 Robot-IPC，建议统一以下约束：</p>
+<ol>
+<li>先定义 topic 命名规范，再开始编码。</li>
+<li>所有共享结构体放在一个公共头文件目录统一维护。</li>
+<li>所有结构体尽量只用固定宽度整数和定长数组。</li>
+<li>需要跨语言时统一 packed 策略。</li>
+<li>大块图像数据不要直接塞进复杂对象，优先使用扁平缓冲区加元数据。</li>
+<li>对每个 topic 写清楚发布者、订阅者、刷新频率和字节大小。</li>
+</ol>
+<p>这套约束看上去简单，但它恰好对应了单机器人本体内部通信最重要的目标：稳定、可控、可分析。</p>
+<h2 id="15">15. 小结<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<p>Robot-IPC 的核心思想非常明确：</p>
+<ul>
+<li>用 host_variable 解决“跨进程共享最新值”</li>
+<li>用 host_function 解决“跨进程请求与响应”</li>
+</ul>
+<p>其中 host_variable 在 Linux 上通过 shm_open + ftruncate + mmap 建立共享内存，再结合原子 flags、多缓冲区和时间戳机制，实现低延迟、低抖动、面向最新值的数据共享。</p>
+<p>在工程使用上，真正决定系统是否可靠的不是 API 数量，而是三件事：</p>
+<ul>
+<li>topic 名字是否统一</li>
+<li>数据结构是否稳定</li>
+<li>读写双方是否严格遵守同一份内存布局约定</li>
+</ul>
+<p>只要这三点做得足够严格，Robot-IPC 就非常适合作为单机器人主机内部的高性能通信基础设施。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yourname/open-robot-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.path", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

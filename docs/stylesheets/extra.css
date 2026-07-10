@@ -89,6 +89,20 @@ input {
   text-indent: 0;
 }
 
+.md-typeset ul,
+.md-typeset ol {
+  margin: 0.8em 0;
+  padding-left: 1.6em;
+}
+
+.md-typeset ul ul,
+.md-typeset ul ol,
+.md-typeset ol ul,
+.md-typeset ol ol {
+  margin: 0.25em 0;
+  padding-left: 1.4em;
+}
+
 .md-typeset h1 {
   margin-bottom: 0.8rem;
   color: var(--ros-blue-dark);

@@ -364,7 +364,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        总结
+        结语
       
     </span>
   </a>
@@ -475,62 +475,6 @@
     
   
     总体架构
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../overview/hardware-software-map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    硬件与软件映射
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../overview/repo-structure/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    仓库结构
   
 
     
@@ -1126,14 +1070,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/architecture/" class="md-nav__link">
+      <a href="../communication/motor_communication/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    整体架构
+    电机通讯
   
 
     
@@ -1154,14 +1098,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/middleware/" class="md-nav__link">
+      <a href="../communication/robot_ipc/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    中间件设计
+    进程间通讯
   
 
     
@@ -1182,98 +1126,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/pubsub/" class="md-nav__link">
+      <a href="../communication/robot_ipc_framework/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    发布订阅机制
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../communication/messages/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    消息定义
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../communication/timing-and-sync/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    时间同步
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../communication/examples/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    示例代码
+    Robot IPC实现
   
 
     
@@ -2799,7 +2659,7 @@
     </figure>
 </div>
 
-<p>又过了一年，MOS 9.2做出来了，并且我们搞懂了怎么将policy Sim2Real。但是此时已经太晚了，国内人形机器人发展的飞快，K1现在已经性能很强了，MOS9已经不具备与K1竞争的能力，并且现在国内有了很多小尺寸人形机器人。MOS9并不稳定，因为并不是公司的产品，没人做QC，很多机械设计上的细节都做的不是很好。但毕竟是学生作品，几个学生在日常学习、科研时间中压榨出来的课外时间能够做出来一个完整的人形机器人已经是极限了。</p>
+<p>又过了一年，MOS 9.2做出来了，并且我们搞懂了怎么将policy Sim2Real。但是此时已经有点晚了，国内人形机器人发展的飞快，K1现在已经性能很强了，MOS9目前很难具备与K1竞争的能力，并且现在国内有了很多小尺寸人形机器人。MOS9并不稳定，因为并不是公司的产品，没人做QC，很多机械设计上的细节都做的不是很好。但毕竟是学生作品，几个学生在日常学习、科研时间中压榨出来的课外时间能够做出来一个完整的人形机器人已经是极限了。</p>
 <div class="ros-gallery ros-gallery--pair ros-gallery--pair-full">
     <figure class="ros-figure ros-figure--paired">
         <img class="ros-image--full" src="../robocup_image/mos92front.JPG" alt="mos92 front" />
@@ -2813,8 +2673,8 @@
 
 <p>26年又改了很多规则，Standard Platform League从比赛中删除，RoboCup不再鼓励自研机器人，而是比赛中可以使用任意平台。所以26年比赛赛场上大部分都是加速进化T1、K1，高擎的Pi-Plus。国内队伍蜂拥而至，比如北信科、武汉大学、湖南大学、农大、北京矿业大学，在25年以前只有清华和浙大参赛。还有之前的标准平台组的队伍比如B-Human（在标准平台组获得过十几年冠军），拥有很强的软件系统能力，在新的比赛规则中有很大的优势。</p>
 <p>由于硬件平台都是一样的，整机自研能力相对不再是最核心的竞争点，比赛相当于合并成了标准平台组，团队更关注视觉定位、规划决策的软件算法，而较少考虑机械、系统、以及运动控制部分的内容。MOS队由于近几年积累的内容更偏向于整机系统，所以在新的比赛规则中处于弱势，如果想在比赛中获取竞争力，需要将更多精力投入软件开发中。</p>
-<h2 id="_2">总结<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>有人觉得MOS9已经失去了意义，它很难具备和商业化机器人竞争的能力，MOS队很难依靠它取得好成绩。但MOS9设计之初就是一个开源项目，它不只是希望赢得比赛，也希望以此作为开放平台提升RoboCup社区的系统开发能力，推动社区技术进步。因此我们开源MOS9的模型、代码以及设计思路，希望此项目能够为机器人初学者提供较全面的机器人系统知识，为以后的机器人开发者提供设计参考。</p>
+<h2 id="_2">结语<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>有人觉得MOS9已经失去了意义，它很难具备和商业化机器人竞争的能力，MOS队很难依靠它取得好成绩。但MOS9设计之初就是一个开源项目，它不只是希望赢得比赛，也希望以此作为开放平台提升RoboCup社区的系统开发能力，推动社区技术进步。因此我们开源MOS9的模型、代码以及设计思路，希望此项目能够为机器人初学者提供较全面的机器人系统知识，为以后的机器人开发者提供设计参考。未来我们会继续努力，让MOS9上场比赛。</p>
 
 
 
