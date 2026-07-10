@@ -77,33 +77,27 @@ nav:
       - 材料与加工: mechanical/materials.md
       - 装配指南: mechanical/assembly.md
 
-  - 电路系统:
+  - 电气系统:
       - 概览: electronics/index.md
 
-  - 通信框架:
+  - 通信系统:
       - 概览: communication/index.md
       - 电机通讯: communication/motor_communication.md
       - 进程间通讯: communication/robot_ipc.md
       - Robot IPC实现: communication/robot_ipc_framework.md
 
-  - 运动控制:
-      - 概览: control/index.md
-
-  - 仿真与模型:
+  - 仿真、模型与数据:
       - 概览: simulation/index.md
       - URDF: simulation/urdf.md
-      - XML: simulation/xml.md
-      - USD: simulation/usd.md
-      - 资源组织: simulation/assets.md
-      - Sim-to-Real: simulation/sim2real.md
+      - XML和USD: simulation/xml_usd.md
+      - 运动重定向: simulation/retarget.md
+
+  - 运动控制:
+      - 概览: control/index.md
+      - AMP: control/amp.md
 
   - 教程:
       - 概览: tutorials/index.md
-      - 从零启动系统: tutorials/bringup.md
-      - 添加一个关节: tutorials/add-a-joint.md
-      - 添加一个传感器: tutorials/add-a-sensor.md
-      - 训练行走策略: tutorials/train-walking.md
-      - 部署踢球策略: tutorials/deploy-kick-policy.md
 
 
   - 开发指南:

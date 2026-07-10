@@ -36,12 +36,12 @@
         <p>节点关系、消息定义、Topic 设计和时间同步。</p>
     </div>
     <div class="ros-card">
-        <h3><a href="control/">运动控制</a></h3>
-        <p>运动学、动力学、状态机、步态和技能控制。</p>
-    </div>
-    <div class="ros-card">
         <h3><a href="simulation/">仿真与模型</a></h3>
         <p>URDF、XML、USD、资源组织和 sim-to-real 迁移。</p>
+    </div>
+    <div class="ros-card">
+        <h3><a href="control/">运动控制</a></h3>
+        <p>运动学、动力学、状态机、步态和技能控制。</p>
     </div>
     <div class="ros-card">
         <h3><a href="tutorials/">教程</a></h3>
