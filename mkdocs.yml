@@ -79,6 +79,7 @@ nav:
 
   - 电气系统:
       - 概览: electronics/index.md
+      - 电路设计及PCB制作: electronics/circuit_design.md
 
   - 通信系统:
       - 概览: communication/index.md
@@ -95,17 +96,16 @@ nav:
   - 运动控制:
       - 概览: control/index.md
       - AMP: control/amp.md
-
-  - 教程:
-      - 概览: tutorials/index.md
+      - Mimic: control/mimic.md
+      - 电机系统辨识: control/system_identification.md
+      - Sim2Real: control/sim2real.md
 
 
   - 开发指南:
-      - 概览: development/index.md
       - 环境配置: development/setup.md
-      - 构建方式: development/build.md
       - 测试: development/testing.md
-      - 贡献指南: development/contributing.md
+
+  - 结语: conclusion.md
 
   - FAQ:
       - 概览: faq/index.md

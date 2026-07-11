@@ -44,7 +44,7 @@
         <p>运动学、动力学、状态机、步态和技能控制。</p>
     </div>
     <div class="ros-card">
-        <h3><a href="tutorials/">教程</a></h3>
+        <h3><a href="development/">开发指南</a></h3>
         <p>从 bringup 到策略训练与部署的实践路径。</p>
     </div>
 </div>
