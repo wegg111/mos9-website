@@ -75,7 +75,6 @@ nav:
       - 电机选型: mechanical/motor_selection.md
       - 结构件设计: mechanical/link_design.md
       - 材料与加工: mechanical/materials.md
-      - 装配指南: mechanical/assembly.md
 
   - 电气系统:
       - 概览: electronics/index.md
@@ -87,7 +86,7 @@ nav:
       - 进程间通讯: communication/robot_ipc.md
       - Robot IPC实现: communication/robot_ipc_framework.md
 
-  - 仿真、模型与数据:
+  - 仿真模型与数据:
       - 概览: simulation/index.md
       - URDF: simulation/urdf.md
       - XML和USD: simulation/xml_usd.md
