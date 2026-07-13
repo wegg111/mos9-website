@@ -1,223 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/quickstart/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/conclusion/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/robocup_intro/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/robocup_intro/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/communication/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/communication/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/communication/motor_communication/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/communication/motor_communication/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/communication/robot_ipc/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/communication/robot_ipc/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/communication/robot_ipc_framework/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/communication/robot_ipc_framework/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/control/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/amp/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/control/amp/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/dynamics/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/control/mimic/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/gait/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/control/sim2real/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/kicking/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/control/system_identification/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/kinematics/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/development/setup/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/mimic/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/development/testing/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/control/state-machine/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/electronics/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/development/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/electronics/circuit_design/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/development/build/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/faq/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/development/contributing/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/mechanical/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/development/setup/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/mechanical/body-structure/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/development/testing/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/mechanical/link_design/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/electronics/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/mechanical/materials/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/electronics/actuator-driver/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/mechanical/motor_selection/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/electronics/controller/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/overview/architecture/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/electronics/power/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/simulation/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/electronics/safety/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/simulation/retarget/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/electronics/sensors/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/simulation/urdf/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://yourname.github.io/open-robot-docs/electronics/wiring/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/faq/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/faq/hardware/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/faq/install/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/faq/simulation/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/mechanical/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/mechanical/assembly/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/mechanical/body-structure/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/mechanical/joints-and-dof/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/mechanical/materials/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/mechanical/transmission/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/overview/architecture/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/reference/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/reference/api/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/reference/configs/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/reference/messages/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/reference/topics/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/simulation/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/simulation/assets/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/simulation/sim2real/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/simulation/urdf/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/simulation/usd/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/simulation/xml/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/tutorials/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/tutorials/add-a-joint/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/tutorials/add-a-sensor/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/tutorials/bringup/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/tutorials/deploy-kick-policy/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://yourname.github.io/open-robot-docs/tutorials/train-walking/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://wegg111.github.io/mos9-website/simulation/xml_usd/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
 </urlset>
