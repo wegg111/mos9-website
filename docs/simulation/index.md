@@ -159,6 +159,8 @@ URDF 中常见关节类型包括：
 
 URDF有很多开源的，可以随便找一个去参考。XML和USD是类似的文件，只不过描述方式不一样。
 
+我们到目前为止只有机械模型，还没有仿真模型。本章后续内容会讲解从机械模型导出URDF、XML、USD的详细步骤。
+
 ## 机器人动作数据
 现在人形机器人越来越多地使用参考数据进行训练，这些参考数据大多都来自于人体动捕数据，比如BVH（Biovision Hierarchy）人体数据。BVH文件可以通过viewer查看：[BVH viewer](https://theorangeduck.com/media/uploads/BVHView/bvhview.html)。还有其他描述方式，比如SMPLX模型格式数据。也由于人用csv直接存储，但是原理都是一样的，他们都是定义了机器人怎么动，存储的内容是每一帧关节角度、根节点位姿、时间戳、身体速度/加速度等。
 

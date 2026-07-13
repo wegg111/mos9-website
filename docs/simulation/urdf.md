@@ -1,6 +1,6 @@
 # URDF
 
-本页用于说明 URDF 模型导出步骤
+本节用于说明从机械模型导出 URDF 模型的步骤
 
 ## SolidWorks导出URDF
 
@@ -114,6 +114,112 @@
 </figure>
 
 
-## 修改碰撞体和关节限位
+## 修改碰撞体
 因为机器人仿真器中机器人刚体模型通过mesh来表达，mesh是由很多小三角形拼出来的机器人三维表面模型。在SolidWorks导出出来的精细模型三角面非常多，这样会导致仿真计算非常慢，所以通常导出出来模型之后会修改碰撞体，用简化的碰撞体比如长方体、圆柱体、球体等仿真容易计算的几何体来替代原来复杂的mesh。实际上对于机器人来说，把碰撞体简化不会对控制器Sim2Real效果影响太多。
 
+关于修改碰撞体或关节限位，可以通过[URDF Studio](https://urdf.d-robotics.cc/)或VsCode插件来操作。
+
+<div class="ros-gallery ros-gallery--pair ros-gallery--pair-full">
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../images/collision3.png" alt="collision3" />
+        <figcaption>修改前完整碰撞模型</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired ros-gallery--pair-full">
+        <img src="../../images/collision1.png" alt="collision1" />
+        <figcaption>修改后简化碰撞模型</figcaption>
+    </figure>
+</div>
+
+身体、手臂、大小腿等直接修改成差不多大小的圆柱体即可，与地面碰撞的部分需要精细设计一下，尤其是脚底的碰撞。脚底碰撞处理有几种方法：平行圆柱、长方体、四点足，我们这里采用平行圆柱。平行圆柱的碰撞类似之前的平板足部碰撞体，能保持仿真的准确性。
+
+<div class="ros-gallery ros-gallery--pair ros-gallery--pair-full">
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../images/collision4.png" alt="collision4" />
+        <figcaption>修改前完整足部碰撞模型</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired ros-gallery--pair-full">
+        <img src="../../images/collision2.png" alt="collision2" />
+        <figcaption>修改后简化足部碰撞模型</figcaption>
+    </figure>
+</div>
+
+例如如下代码，将足部原来的mesh碰撞体改为三圆柱碰撞体：
+```
+<link name="Rfoot">
+  <inertial>
+    <origin xyz="0 -0.0233 0.02403" rpy="0 0 0" />
+    <mass value="0.67876" />
+    <inertia
+      ixx="0.00137339124"
+      ixy="-2.033E-08"
+      ixz="-1.7E-10"
+      iyy="0.00101905647"
+      iyz="-0.0002676393"
+      izz="0.00088815706" />
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <mesh filename="../meshes/Rfoot.STL" />
+    </geometry>
+    <material name="">
+      <color rgba="1 1 1 1" />
+    </material>
+  </visual>
+
+  <!-- 修改前碰撞体
+  <collision>
+    <geometry>
+      <mesh filename="../meshes/Rfoot.STL" />
+    </geometry>
+  </collision>
+  -->
+
+  <!-- 修改后碰撞体 -->
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <cylinder radius="0.03" length="0.13" />
+    </geometry>
+  </collision>
+
+  <collision>
+    <origin xyz="0.024 -0.052 -0.005" rpy="0 0 0" />
+    <geometry>
+      <cylinder radius="0.022" length="0.16" />
+    </geometry>
+  </collision>
+
+  <collision>
+    <origin xyz="-0.024 -0.052 -0.005" rpy="0 0 0" />
+    <geometry>
+      <cylinder radius="0.022" length="0.16" />
+    </geometry>
+  </collision>
+</link>
+```
+
+## 修改关节限位
+
+在URDF Studio中查看完整碰撞体模型，旋转各个关节，最后读取最大旋转位置写入URDF即可
+
+<figure class="ros-figure">
+    <img src="../../images/collision5.png" alt="collision5" />
+    <figcaption>读取关节限位</figcaption>
+</figure>
+
+将关节限位写入URDF：
+
+```
+<joint name="right_knee" type="revolute">
+    <origin xyz="-0.00900000000000004 0 -0.146"
+            rpy="1.5707963267949 0 -1.5707963267949" />
+    <parent link="Rleg1" />
+    <child link="Rleg2" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-1.0" upper="2.3" />
+</joint>
+```
+
+这里虽然图片中最大位置2.42都可以，但是我们限制的更严格，最大位置给2.3，这个可以根据需求随意修改。
