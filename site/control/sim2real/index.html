@@ -79,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#sim2real" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1226,6 +1231,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sim2Real
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1243,6 +1268,75 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sim2real_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sim2Real影响因素
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        真机部署效果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="真机部署效果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mimic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mimic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1570,9 +1664,76 @@
   
 
 
-  <h1>Sim2Real</h1>
+<h1 id="sim2real">Sim2Real<a class="headerlink" href="#sim2real" title="Permanent link">&para;</a></h1>
+<p>本节讲最终真机的代码实现。</p>
+<h2 id="sim2real_1">Sim2Real影响因素<a class="headerlink" href="#sim2real_1" title="Permanent link">&para;</a></h2>
+<p>Sim2Real影响最大的几个成分大概是 电机参数&gt;系统延迟&gt;机械模型精准度，所以真机代码中要控制电机参数和仿真一致，以及写控制循环的时候不能引入额外延迟。我们电机控制循环为500Hz，policy的控制循环为50Hz。我们使用IPC作为通讯中间件。</p>
+<p>部署代码在<a href="https://github.com/THMOS2025/mos9-deploy">mos9-deploy</a>。</p>
+<h2 id="_1">真机部署效果<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="amp">AMP<a class="headerlink" href="#amp" title="Permanent link">&para;</a></h3>
+<div class="amp-video-grid">
+    <figure class="amp-video-figure">
+        <video controls autoplay loop muted playsinline>
+            <source src="../../images/ampreal1.mp4" type="video/mp4">
+        </video>
+        <figcaption>向前行走</figcaption>
+    </figure>
+    <figure class="amp-video-figure">
+        <video controls autoplay loop muted playsinline>
+            <source src="../../images/ampreal2.mp4" type="video/mp4">
+        </video>
+        <figcaption>横移</figcaption>
+    </figure>
+    <figure class="amp-video-figure">
+        <video controls autoplay loop muted playsinline>
+            <source src="../../images/ampreal3.mp4" type="video/mp4">
+        </video>
+        <figcaption>旋转</figcaption>
+    </figure>
+</div>
 
+<style>
+.amp-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: start;
+}
 
+.amp-video-grid .amp-video-figure {
+    margin: 0;
+    text-align: center;
+}
+
+.amp-video-grid video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.amp-video-grid figcaption {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .amp-video-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<h3 id="mimic">Mimic<a class="headerlink" href="#mimic" title="Permanent link">&para;</a></h3>
+<div>
+    <figure>
+        <video controls autoplay loop muted playsinline>
+            <source src="../../images/mimicreal1_web.mp4" type="video/mp4">
+        </video>
+        <figcaption>踢球</figcaption>
+    </figure>
+</div>
 
 
 

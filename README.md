@@ -1,4 +1,4 @@
-# Open Robot Docs
+# MOS-9 Open source humanoid robot
 
 机器人文档站脚手架，基于 MkDocs Material。
 
