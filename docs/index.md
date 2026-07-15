@@ -1,50 +1,28 @@
-# MOS-9
+# MOS-9 开源文档
 
-<div class="ros-hero">
-    <p class="ros-hero__eyebrow"></p>
-    <h1>开源小尺寸人形足球机器人</h1>
-    <p class="ros-hero__lead">
-        MOS-9 面向 RoboCup 小型人形足球场景，强调稳定步态、快速感知、可复现控制链路和工程化迭代能力。
-    </p>
-</div>
+MOS-9 是面向 RoboCup 人形足球场景的开源机器人项目。本文档围绕一台机器人从设计到落地的完整链路展开：
 
-## 关于 MOS-9
+- 机械与电气设计
+- 电机与进程间通信
+- 仿真模型与动作数据
+- 运动控制与 Sim2Real
+- 开发环境与测试验证
 
-<div class="ros-blog">
-    <article class="ros-post">
-        <p class="ros-post__meta">RoboCup / Platform</p>
-        <h3>一台为比赛场景设计的开源足球机器人</h3>
-        <p>
-            MOS-9 的目标不是只完成实验室里的单项动作，而是在 RoboCup 对抗环境中完成持续感知、决策、行走、控球和恢复。整机设计围绕比赛节奏展开，因此机械、电控、通信和控制模块都需要保证实时性与稳定性。
-        </p>
-    </article>
-</div>
+## 文档结构速览
 
-## 文档分区
+- [项目背景](robocup_intro.md)：RoboCup 赛事背景、团队经历与项目定位。
+- [系统总览](overview/architecture.md)：机器人整体软硬件架构。
+- [机械设计](mechanical/index.md)：构型设计、电机选型、连杆与材料加工。
+- [电气系统](electronics/index.md)：电路设计与 PCB 制作流程。
+- [通信系统](communication/index.md)：电机 CAN 通信、进程间通信与 Robot IPC 框架。
+- [仿真模型与数据](simulation/index.md)：仿真模型构建、文件格式转换与动作数据处理。
+- [运动控制](control/index.md)：优化控制、强化学习、AMP/Mimic、系统辨识与 Sim2Real。
+- [开发指南](development/setup.md)：环境搭建、测试工具与验证脚本。
+- [FAQ](faq/index.md)：常见问题汇总。
+- [结语](conclusion.md)
 
-<div class="ros-grid ros-grid--3">
-    <div class="ros-card">
-        <h3><a href="mechanical/">机械设计</a></h3>
-        <p>本体结构、关节自由度、传动、材料与装配流程。</p>
-    </div>
-    <div class="ros-card">
-        <h3><a href="electronics/">电路系统</a></h3>
-        <p>供电、主控、驱动、传感器、线束和安全设计。</p>
-    </div>
-    <div class="ros-card">
-        <h3><a href="communication/">通信框架</a></h3>
-        <p>节点关系、消息定义、Topic 设计和时间同步。</p>
-    </div>
-    <div class="ros-card">
-        <h3><a href="simulation/">仿真与模型</a></h3>
-        <p>URDF、XML、USD、资源组织和 sim-to-real 迁移。</p>
-    </div>
-    <div class="ros-card">
-        <h3><a href="control/">运动控制</a></h3>
-        <p>运动学、动力学、状态机、步态和技能控制。</p>
-    </div>
-    <div class="ros-card">
-        <h3><a href="development/">开发指南</a></h3>
-        <p>从 bringup 到策略训练与部署的实践路径。</p>
-    </div>
-</div>
+## 适用人群
+
+- 机器人初学者：可以按阅读路径快速建立系统工程认知。
+- 研究与竞赛团队：可以复用通信、仿真、控制与测试流程。
+- 工程开发者：可以参考文档中的模块拆分与实机验证方法。

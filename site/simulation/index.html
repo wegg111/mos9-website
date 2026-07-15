@@ -1390,35 +1390,7 @@
   <span class="md-ellipsis">
     
   
-    环境配置
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/testing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    测试
+    环境配置与测试
   
 
     
@@ -1651,7 +1623,7 @@
     </figure>
 </div>
 
-<p>在不同的仿真器里用不同的模型文件来描述机器人，常用的是URDF（Unified Robot Description Format），在任何仿真器都适用。XML文件专用于Mujoco，USD专用与IsaacSim和IsaacLab。通常先有URDF，然后转换成另外两个。</p>
+<p>在不同的仿真器里用不同的模型文件来描述机器人，常用的是URDF（Unified Robot Description Format），在任何仿真器都适用。XML文件专用于Mujoco，USD专用于IsaacSim和IsaacLab。通常先有URDF，然后转换成另外两个。</p>
 <p>URDF用来定义机器人的刚体结构、关节连接关系、几何外形、质量和惯量、碰撞模型、可视化模型、部分传动/插件扩展信息。想象一下一个人形机器人如果用抽象的树状图来描述的话，就像下面这张图一样，URDF就是将这个树状图用代码来表示。Link 表示机器人中的刚体部件，如躯干、头部、上臂、小腿和脚；Joint 表示刚体之间的连接和运动约束，如肩关节、肘关节、髋关节和膝关节。</p>
 <pre class="mermaid"><code>flowchart TD
     base["base_link&lt;br/&gt;躯干/骨盆"]

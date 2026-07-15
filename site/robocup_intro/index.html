@@ -1401,35 +1401,7 @@
   <span class="md-ellipsis">
     
   
-    环境配置
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/testing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    测试
+    环境配置与测试
   
 
     
@@ -1617,8 +1589,8 @@
 
 <h2 id="thmos-robocup">THMOS 和 RoboCup<a class="headerlink" href="#thmos-robocup" title="Permanent link">&para;</a></h2>
 <p>RoboCup（Robot World Cup Initiative），即机器人世界杯，是国际上主要的科研导向的机器人竞赛之一。该赛事创立初衷是为了促进人工智能、机器人学及相关领域的研究与发展。大多数都是高校团队参加比赛，参赛队伍需要制作自己的机器人，所以这个比赛非常考验团队机器人系统开发能力。</p>
-<p>THMOS（Tsinghua Master of Soccsr）是一个清华FuRoC（Future Robot Club）社团旗下的一个机器人足球队。FuRoC总共有3支队伍，每年都会参加机器人世界杯（RoboCup），其中包括THMOS队（简称MOS队）、火神队（Hephaestus）、Tinker队。三个队伍参加三个组别的赛事，分别是Humanoid League KidSize、Humanoid League AdultSize、@Home组别。</p>
-<p>可能众所周知的是清华自动化系火神队，因为他们25年获得了RoboCup冠军，这是整个团队一直追求的目标。我是自动化系的同学，我并没有加入火神队，是因为我在22年加入社团时火神队已经有几年没有参加比赛，当时火神队内并没有人，直到24年火神队才重新参加Adult组别的比赛。所以在22年加入FuRoC时社团只有两个队伍，我一直在THMOS队伍中参与Kid-Size人形机器人的开发。</p>
+<p>THMOS（Tsinghua Master of Soccer）是一个清华FuRoC（Future Robot Club）社团旗下的一个机器人足球队。FuRoC总共有3支队伍，每年都会参加机器人世界杯（RoboCup），其中包括THMOS队（简称MOS队）、火神队（Hephaestus）、Tinker队。三个队伍参加三个组别的赛事，分别是Humanoid League KidSize、Humanoid League AdultSize、@Home组别。</p>
+<p>可能众所周知的是清华自动化系火神队，因为他们在2025年获得了RoboCup冠军，这是整个团队一直追求的目标。我是自动化系的同学，我并没有加入火神队，是因为我在2022年加入社团时火神队已经有几年没有参加比赛，当时火神队内并没有人，直到2024年火神队才重新参加Adult组别的比赛。所以在2022年加入FuRoC时社团只有两个队伍，我一直在THMOS队伍中参与Kid-Size人形机器人的开发。</p>
 <p>RoboCup有很多组别的比赛，比如Soccer，专注于足球比赛；Rescue面向救援场景；@Home面向家庭场景；Industrial面向工业场景；RoboCupJunior是高中生的比赛。RoboCup Soccer中包含Humanoid League（Major）、Standard Platform League（SPL）、Small Size League（SSL）、Middle Size League（MSL），Humanoid League中又分Kid-Size和Adult-Size（2025年及以前，2026年开始改为Small、Middle、Large三个组别）。</p>
 <figure class="ros-figure ros-figure--narrow">
     <img src="../robocup_image/robocup2024.JPG" alt="RoboCup2024" />
@@ -1645,7 +1617,7 @@
     </figure>
 </div>
 
-<p>THMOS参加的是Humanoid League Kid-Size组别，是自研机器人平台进行比赛。在22年我大一刚加入社团的时候，机器人只有一个躯壳，上面的算法都不work。我最初参与视觉的工作，用YOLO目标检测算法识别球场上的机器人、球、门柱以及边角点。下图是我们在2022-2023年使用的机器人，名叫mos8（是因为这个是团队第8代机器人，虽然我并没有见过8代以前的机器人）。这个机器人使用单目相机，Dynamixel的舵机，算力是TX2，行走用的ZMP，跌倒爬起用的手调动态序列。机器人性能很差，吴奇学长很强，他带我们搞定各个模块，成功让它学会了踢球。</p>
+<p>THMOS参加的是Humanoid League Kid-Size组别，是自研机器人平台进行比赛。在2022年我大一刚加入社团的时候，机器人只有一个躯壳，上面的算法都不work。我最初参与视觉的工作，用YOLO目标检测算法识别球场上的机器人、球、门柱以及边角点。下图是我们在2022-2023年使用的机器人，名叫mos8（是因为这个是团队第8代机器人，虽然我并没有见过8代以前的机器人）。这个机器人使用单目相机，Dynamixel的舵机，算力是TX2，行走用的ZMP，跌倒爬起用的手调动态序列。机器人性能很差，吴奇学长很强，他带我们搞定各个模块，成功让它学会了踢球。</p>
 <div class="ros-gallery ros-gallery--pair">
     <figure class="ros-figure ros-figure--paired">
         <img src="../robocup_image/mos8.JPG" alt="2023年参赛的机器人mos8" />
@@ -1657,7 +1629,7 @@
     </figure>
 </div>
 
-<p>由于疫情，22年RoboCup世界赛在线上举行仿真赛，很有幸，23年去法国参加了比赛，也是疫情原因，很多机器人都退步了，但是我们这一年取得了不小的进步，从一个不能动的机器人到让它能够踢球。我们在世界赛中有4粒进球，并且获得了第4的成绩。我们在比赛当中见到了一些很强的对手，比如来自法国本土的Rhoban队，他们以优秀的机械设计以及出色的传接球决策算法赢得了23年的冠军。来自日本的CIT队伍虽然有很出色的机械设计，但是软件略逊一筹获得亚军。这让我们意识到想要获得这个组别的冠军需要在机械本体、系统设计、视觉定位、规划决策上做的都很优秀。</p>
+<p>由于疫情，2022年RoboCup世界赛在线上举行仿真赛，很有幸，2023年去法国参加了比赛，也是疫情原因，很多机器人都退步了，但是我们这一年取得了不小的进步，从一个不能动的机器人到让它能够踢球。我们在世界赛中有4粒进球，并且获得了第4的成绩。我们在比赛当中见到了一些很强的对手，比如来自法国本土的Rhoban队，他们以优秀的机械设计以及出色的传接球决策算法赢得了2023年的冠军。来自日本的CIT队伍虽然有很出色的机械设计，但是软件略逊一筹获得亚军。这让我们意识到想要获得这个组别的冠军需要在机械本体、系统设计、视觉定位、规划决策上做得都很优秀。</p>
 <div class="ros-gallery ros-gallery--teams">
     <figure class="ros-figure ros-figure--team">
         <img src="../robocup_image/cit2.JPG" alt="CIT" />

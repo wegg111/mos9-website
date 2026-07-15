@@ -101,8 +101,7 @@ nav:
 
 
   - 开发指南:
-      - 环境配置: development/setup.md
-      - 测试: development/testing.md
+      - 环境配置与测试: development/setup.md
 
   - 结语: conclusion.md
 
