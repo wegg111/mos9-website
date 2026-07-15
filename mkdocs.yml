@@ -1,8 +1,8 @@
 site_name: MOS-9
 site_description: 开源机器人MOS-9，涵盖机械设计、电路系统、通信框架、运动控制、仿真与模型、教程和开发参考
 site_url: https://wegg111.github.io/mos9-website/
-repo_url: https://github.com/wegg111/mos9-website
-repo_name: wegg111/mos9-website
+repo_url: https://github.com/THMOS2025/MOS-9-Open-Source-Humanoid-Robot
+repo_name: THMOS2025/MOS-9-Open-Source-Humanoid-Robot
 edit_uri: edit/main/docs/
 
 theme:
@@ -60,7 +60,7 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/wegg111/mos9-website
+      link: https://github.com/THMOS2025/MOS-9-Open-Source-Humanoid-Robot
 
 nav:
   - 首页: index.md
