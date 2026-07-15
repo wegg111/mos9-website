@@ -1,111 +1,381 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-         <loc>https://wegg111.github.io/mos9-website/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/conclusion/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/conclusion/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/conclusion/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/conclusion/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/robocup_intro/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/robocup_intro/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/robocup_intro/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/robocup_intro/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/communication/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/communication/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/communication/motor_communication/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/communication/motor_communication/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/motor_communication/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/motor_communication/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/communication/robot_ipc/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/communication/robot_ipc/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/robot_ipc/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/robot_ipc/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/communication/robot_ipc_framework/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/communication/robot_ipc_framework/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/robot_ipc_framework/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/robot_ipc_framework/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/control/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/control/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/control/amp/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/control/amp/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/amp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/amp/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/control/mimic/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/control/mimic/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/mimic/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/mimic/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/control/sim2real/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/control/sim2real/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/sim2real/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/sim2real/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/control/system_identification/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/control/system_identification/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/system_identification/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/system_identification/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/development/setup/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/development/setup/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/development/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/development/setup/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/electronics/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/electronics/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/electronics/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/electronics/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/electronics/circuit_design/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/electronics/circuit_design/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/electronics/circuit_design/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/electronics/circuit_design/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/faq/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/faq/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/faq/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/faq/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/mechanical/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/mechanical/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/mechanical/assembly_sequence/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/mechanical/assembly_sequence/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/assembly_sequence/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/assembly_sequence/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/mechanical/body-structure/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/mechanical/body-structure/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/body-structure/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/body-structure/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/mechanical/link_design/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/mechanical/link_design/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/link_design/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/link_design/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/mechanical/materials/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/mechanical/materials/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/materials/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/materials/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/mechanical/motor_selection/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/mechanical/motor_selection/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/motor_selection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/motor_selection/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/overview/architecture/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/overview/architecture/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/overview/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/overview/architecture/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/simulation/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/simulation/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/simulation/retarget/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/simulation/retarget/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/retarget/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/retarget/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/simulation/urdf/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/simulation/urdf/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/urdf/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/urdf/"/>
     </url>
     <url>
-         <loc>https://wegg111.github.io/mos9-website/simulation/xml_usd/</loc>
-         <lastmod>2026-07-15</lastmod>
+        <loc>https://wegg111.github.io/mos9-website/simulation/xml_usd/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/xml_usd/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/xml_usd/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/conclusion/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/conclusion/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/conclusion/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/robocup_intro/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/robocup_intro/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/robocup_intro/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/communication/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/communication/motor_communication/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/motor_communication/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/motor_communication/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/communication/robot_ipc/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/robot_ipc/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/robot_ipc/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/communication/robot_ipc_framework/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/communication/robot_ipc_framework/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/communication/robot_ipc_framework/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/control/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/control/amp/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/amp/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/amp/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/control/mimic/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/mimic/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/mimic/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/control/sim2real/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/sim2real/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/sim2real/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/control/system_identification/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/control/system_identification/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/control/system_identification/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/development/setup/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/development/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/development/setup/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/electronics/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/electronics/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/electronics/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/electronics/circuit_design/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/electronics/circuit_design/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/electronics/circuit_design/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/faq/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/faq/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/faq/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/mechanical/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/mechanical/assembly_sequence/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/assembly_sequence/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/assembly_sequence/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/mechanical/body-structure/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/body-structure/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/body-structure/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/mechanical/link_design/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/link_design/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/link_design/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/mechanical/materials/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/materials/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/materials/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/mechanical/motor_selection/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/mechanical/motor_selection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/mechanical/motor_selection/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/overview/architecture/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/overview/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/overview/architecture/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/simulation/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/simulation/retarget/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/retarget/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/retarget/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/simulation/urdf/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/urdf/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/urdf/"/>
+    </url>
+    <url>
+        <loc>https://wegg111.github.io/mos9-website/en/simulation/xml_usd/</loc>
+        <lastmod>2026-07-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://wegg111.github.io/mos9-website/en/simulation/xml_usd/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://wegg111.github.io/mos9-website/simulation/xml_usd/"/>
     </url>
 </urlset>

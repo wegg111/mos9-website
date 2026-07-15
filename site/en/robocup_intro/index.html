@@ -1,0 +1,1886 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="开源机器人MOS-9，涵盖机械设计、电路系统、通信框架、运动控制、仿真与模型、教程和开发参考">
+      
+      
+      
+        <link rel="canonical" href="https://wegg111.github.io/mos9-website/en/robocup_intro/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../overview/architecture/">
+      
+      
+        
+          <link rel="alternate" href="../../robocup_intro/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>项目背景 - MOS-9</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#project-background" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../" title="MOS-9" class="md-header__button md-logo" aria-label="MOS-9" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MOS-9
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              项目背景
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../robocup_intro/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/THMOS2025/MOS-9-Open-Source-Humanoid-Robot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    THMOS2025/MOS-9-Open-Source-Humanoid-Robot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="MOS-9" class="md-nav__button md-logo" aria-label="MOS-9" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MOS-9
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/THMOS2025/MOS-9-Open-Source-Humanoid-Robot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    THMOS2025/MOS-9-Open-Source-Humanoid-Robot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目背景
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目背景
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#thmos-and-robocup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        THMOS and RoboCup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mos-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MOS-9
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统总览
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统总览
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总体架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机械设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机械设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mechanical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mechanical/body-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构型设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mechanical/motor_selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电机选型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mechanical/link_design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    结构件设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mechanical/materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    材料与加工
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mechanical/assembly_sequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    装配顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电气系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    电气系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../electronics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../electronics/circuit_design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电路设计及PCB制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通信系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    通信系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication/motor_communication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电机通讯
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication/robot_ipc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程间通讯
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication/robot_ipc_framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Robot IPC实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仿真模型与数据
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    仿真模型与数据
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulation/urdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    URDF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulation/xml_usd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML和USD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulation/retarget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动重定向
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动控制
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    运动控制
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/amp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/mimic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mimic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/system_identification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电机系统辨识
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control/sim2real/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sim2Real
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境配置与测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    结语
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FAQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/THMOS2025/MOS-9-Open-Source-Humanoid-Robot/edit/main/docs/en/robocup_intro.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/THMOS2025/MOS-9-Open-Source-Humanoid-Robot/raw/main/docs/en/robocup_intro.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="project-background">Project Background<a class="headerlink" href="#project-background" title="Permanent link">&para;</a></h1>
+<div class="ros-hero">
+    <p class="ros-hero__eyebrow"></p>
+    <p class="ros-hero__lead">
+        An introduction to RoboCup, the Tsinghua robotics team, and MOS-9
+    </p>
+</div>
+
+<h2 id="thmos-and-robocup">THMOS and RoboCup<a class="headerlink" href="#thmos-and-robocup" title="Permanent link">&para;</a></h2>
+<p>RoboCup, short for the Robot World Cup Initiative, is one of the major research-oriented robotics competitions in the world. It was founded to promote research and development in artificial intelligence, robotics, and related fields. Most participating teams come from universities, and each team is required to build its own robot, so the competition is a strong test of a team's robot system development capability.</p>
+<p>THMOS, short for Tsinghua Master of Soccer, is a robot soccer team under FuRoC, the Future Robot Club at Tsinghua University. FuRoC has a total of three teams that participate in RoboCup every year: THMOS, also called the MOS team, Hephaestus, and Tinker. These three teams participate in three different categories: Humanoid League KidSize, Humanoid League AdultSize, and @Home.</p>
+<p>Many people may be more familiar with Tsinghua's Hephaestus team from the Department of Automation, because they won the RoboCup championship in 2025, which had long been the goal of the whole club. I am also from the Department of Automation, but I did not join Hephaestus. When I joined the club in 2022, Hephaestus had not participated in the competition for several years and there was basically nobody left on that team. It was only in 2024 that Hephaestus returned to the Adult division. So when I joined FuRoC in 2022, there were only two active teams in the club, and I have been involved in the development of Kid-Size humanoid robots in THMOS ever since.</p>
+<p>RoboCup has many categories. Soccer focuses on football matches, Rescue targets rescue scenarios, @Home targets home environments, Industrial targets industrial applications, and RoboCupJunior is for high-school students. RoboCup Soccer includes the Humanoid League (Major), Standard Platform League (SPL), Small Size League (SSL), and Middle Size League (MSL). The Humanoid League was further divided into Kid-Size and Adult-Size until 2025, and from 2026 onward it is reorganized into Small, Middle, and Large divisions.</p>
+<figure class="ros-figure ros-figure--narrow">
+    <img src="../../robocup_image/robocup2024.JPG" alt="RoboCup2024" />
+    <figcaption>RoboCup 2024</figcaption>
+</figure>
+
+<p>Among these, the Humanoid League (Major) is the category where humanoid robots play soccer. Before and including 2025, each team had to develop its own robot for the competition. Because humanoid robot systems are extremely complex, this category places greater weight on system integration capability. Teams that can build better hardware platforms and apply better motion-control algorithms have a higher chance of winning. The Standard Platform League uses standardized commercial platforms. Previously, the only standard platform was the NAO robot. Since the hardware is identical across teams, winning and losing depends solely on software capabilities such as perception, localization, and planning and decision-making. As a result, teams in this category are usually much stronger in software than teams in the Major division. Small Size League and Middle Size League use multiple wheeled robots as players on the field. These categories do not emphasize hardware platforms, and Small Size uses global localization, so they place even more emphasis on decision-making strategies and strategic game play.</p>
+<div class="ros-gallery ros-gallery--compact ros-gallery--league">
+    <figure class="ros-figure">
+        <img src="../../robocup_image/adult_play4.JPG" alt="Humanoid Adult" />
+        <figcaption>Humanoid Adult</figcaption>
+    </figure>
+    <figure class="ros-figure">
+        <img src="../../robocup_image/k1_vs_rhoban.JPG" alt="Humanoid Kid" />
+        <figcaption>Humanoid Kid</figcaption>
+    </figure>
+    <figure class="ros-figure">
+        <img src="../../robocup_image/nao.JPG" alt="Standard Platform League" />
+        <figcaption>Standard Platform League</figcaption>
+    </figure>
+    <figure class="ros-figure">
+        <img src="../../robocup_image/small_group.JPG" alt="Small Size League" />
+        <figcaption>Small Size League</figcaption>
+    </figure>
+</div>
+
+<p>THMOS competes in the Humanoid League Kid-Size category, using a self-developed robot platform. When I first joined the club as a freshman in 2022, the robot was little more than a shell, and most of the algorithms did not work. I initially worked on vision, using YOLO object detection to identify robots, the ball, goalposts, and corner landmarks on the field. The robot shown below is the one we used in 2022 and 2023, called MOS8. The name comes from the fact that it was the team's eighth-generation robot, although I had never seen any version earlier than MOS8. This robot used a monocular camera, Dynamixel servos, a TX2 for compute, ZMP for walking, and hand-tuned dynamic sequences for recovery after falling. The robot's performance was poor. However, senior teammate Wu Qi was excellent and led us through all the modules, eventually making the robot learn to kick the ball.</p>
+<div class="ros-gallery ros-gallery--pair">
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../robocup_image/mos8.JPG" alt="2023 robot mos8" />
+        <figcaption>MOS8 used in the 2023 competition</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../robocup_image/2023France.jpg" alt="RoboCup2023 France Bordeaux" />
+        <figcaption>RoboCup 2023 in Bordeaux, France</figcaption>
+    </figure>
+</div>
+
+<p>Because of the pandemic, the 2022 RoboCup world competition was held online as a simulation competition. Fortunately, we were able to attend the 2023 competition in France. Because of the pandemic, many teams' robots had regressed, but we ourselves made substantial progress that year, going from a robot that could barely move to one that could kick. We scored four goals at the world competition and finished in fourth place. We met some very strong opponents there, such as the local French team Rhoban, who won the 2023 championship through excellent mechanical design and outstanding passing and decision-making. The Japanese CIT team had excellent mechanical design as well, but slightly weaker software, and took second place. This made us realize that to win this category, a team needs to be strong in mechanical design, system design, vision and localization, and planning and decision-making all at once.</p>
+<div class="ros-gallery ros-gallery--teams">
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/cit2.JPG" alt="CIT" />
+        <figcaption>CIT, 2024 champion</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/Rhoban2.JPG" alt="Rhoban" />
+        <figcaption>Rhoban, 2023 champion</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/ZJUdancer.JPG" alt="ZJU Dancer" />
+        <figcaption>ZJU Dancer, Zhejiang University once achieved runner-up</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/kerean.JPG" alt="Korean Team" />
+        <figcaption>Korean Team</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/kidsizerobot.JPG" alt="Kid-Size Robot" />
+        <figcaption>Kid-Size Robot</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/NUbots2.JPG" alt="NUbots" />
+        <figcaption>NUbots</figcaption>
+    </figure>
+</div>
+
+<p>Starting in 2023, more and more robots driven by servo motors began to appear, such as ARTEMIS from RoMeLa, Cassie from Agility Robotics, GR-1 from Fourier, and H1 from Unitree. Servo motors offer high power density, strong dynamic performance, and support both position and torque control, making them the natural choice for the next generation of robots. At that time, however, Kid-Size teams were still mostly using traditional servos. Since servos have lower power density, moving to a next-generation actuator was necessary to improve dynamic performance. We wanted to build a next-generation Kid-Size robot, so we began to consider developing a new platform.</p>
+<p>Starting in 2023, we began designing the next-generation robot from the configuration level onward, but for various reasons the development was interrupted. In 2024, our progress was limited to upgrading the TX2 to Orin Nano, replacing the monocular camera with a Zed Mini stereo camera, and updating the localization algorithm. Although the kicking performance improved a lot, in the quarterfinals the opposing robot walked very stably while ours would fall down after even slight contact. As a result, we failed to score and were unfortunately eliminated.</p>
+<p>RoMeLa started building servo-driven robots much earlier. They designed their own motors and their entire robot system themselves. Adult-Size is very difficult for university teams because humanoid R&amp;D consumes a great deal of resources. As a result, there were only four or five teams in that category, and each team fielded only two robots. Dennis Hong, however, is deeply passionate about RoboCup. After many years of effort, his team finally defeated the traditional powerhouse NimbRo in the 2024 final and won the championship, demonstrating that servo-driven robots are indeed superior to traditional servo-actuated robots in this context. I was fortunate to witness RoMeLa win that championship, take a photo with Dennis Hong, and exchange many ideas about robot design.</p>
+<p>In 2023, Booster Robotics was founded and managed to build a humanoid robot in only a few months. Company staff then became the main team members participating in the 2024 competition, and this was when the Hephaestus team returned to RoboCup. However, they still used the earlier MPC plus WBC approach, and because they had not optimized it for as long as RoMeLa had, their performance was still not as strong. Still, the early form of T1 had already appeared, and they were evolving quickly.</p>
+<p>THMOS cooperated with Fourier in 2023, and Fourier provided the GR-1 robot to support our participation in the Adult division. But GR-1 was not designed specifically for the competition. Many aspects such as height, weight, and head design were not optimal, and its motion-control capability was not especially strong. On top of that, our undergraduate team of only a few people did not have strong engineering capacity, so we did not achieve a good result. Even so, it was a meaningful attempt.</p>
+<div class="ros-gallery ros-gallery--teams">
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/T12024_3.JPG" alt="T1 2024" />
+        <figcaption>Booster T1 2024</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/T12024_pickup.JPG" alt="T1 Pickup" />
+        <figcaption>T1 Pickup</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/romela3.JPG" alt="RoMeLa" />
+        <figcaption>RoMeLa</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/kerean_adult.JPG" alt="Korean Adult Team" />
+        <figcaption>Korean Adult Team HERoEHS</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/adult_play4.JPG" alt="NimbRo" />
+        <figcaption>NimbRo vs RoMeLa</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--team">
+        <img src="../../robocup_image/adult_size_play.JPG" alt="Adult Size Play" />
+        <figcaption>HERoEHS vs RoMeLa</figcaption>
+    </figure>
+</div>
+
+<h2 id="mos-9">MOS-9<a class="headerlink" href="#mos-9" title="Permanent link">&para;</a></h2>
+<p>The year 2024 was a major disappointment. We should have achieved a better result, and we knew we needed to do more work, but our progress never matched our expectations. At Tsinghua, very few people can persist with one thing for several years, and very few remain in the club for a long time. After each year's competition, at least half of the members usually leave the team. Students on some foreign teams can graduate through RoboCup-related projects, whether at the bachelor's or master's level. In some domestic universities, teams can earn recommendation-based graduate admission or overall score bonuses through competition results. But at Tsinghua, you receive no extra reward at all, and you may even hurt your grades or paper output because RoboCup takes so much time. Everyone works purely out of passion, and that kind of commitment is actually rare at Tsinghua, so we have always lacked both people and time.</p>
+<p>Out of the dozen or so people who participated in the 2024 competition, probably only four or five remained. Jinyin and I still wanted to build the next-generation robot, so we began to seriously design MOS9, a Kid-Size humanoid soccer robot driven by servo motors. At first, even doing the mechanical design was very difficult. Even in the mechanical engineering department, many details of mechanical design are not really taught, such as how to design the configuration, how to design links and plate structures, how to consider strength and total weight, and even how to plan cable routing. We had almost no experience in any of this. So we bought a Bambu Lab printer and used printed parts for mechanical validation before machining, which helped speed up development. In fact, our pace was not slow. By 2025, we had already completed the full robot. Unfortunately, the Daran motors we purchased were of poor quality and we could not even tune the Kp and Kd of the position control loop properly, which led to a large mismatch from the simulated response. As a result, policies trained in simulation could not transfer to the real robot.</p>
+<div class="ros-gallery ros-gallery--pair ros-gallery--pair-full">
+    <figure class="ros-figure ros-figure--paired">
+        <img class="ros-image--full" src="../../robocup_image/mos91front.png" alt="mos91 front" />
+        <figcaption>MOS9.1 front view</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired">
+        <img class="ros-image--full" src="../../robocup_image/mos91back.png" alt="mos91 back" />
+        <figcaption>MOS9.1 rear view</figcaption>
+    </figure>
+</div>
+
+<p>But Booster Robotics improved extremely quickly that year. Their T1 robot had already become highly complete, and they had also developed a small humanoid robot called K1. K1 was used in the 2025 Kid-Size competition. Our advisor, Professor Liu Li, had very good communication with Booster Robotics, and the Booster team said they would sponsor several K1 units for us before the competition, hoping that both of our teams could win world championships.</p>
+<p>The rules of the 2025 world competition changed a great deal. Previously, active stereo vision was not allowed, so all teams uniformly used passive stereo systems such as the Zed series. In 2025, the rules were changed to allow the Realsense series. In the Adult humanoid category, robots were now required to recover after falling, aligning the rules more closely with Kid-Size, so the 2024 champion RoMeLa could not participate in 2025. Kid-Size also changed some rules, for example allowing commercial robots in the Major division. Previously, commercial robots were mainly associated with the Standard Platform League, such as NAO. In the 2025 Adult competition, only Tsinghua Hephaestus, THMOS, UT Austin, China Agricultural University's Shanhai team, and NimbRo from 2024 participated. Among them, Hephaestus, UT Austin, and Shanhai used the T1 sponsored by Booster Robotics, while we used Unitree G1. Booster Robotics improved tremendously that year, and Hephaestus won the championship. It was Tsinghua's first RoboCup championship after more than a decade of participation, and also the first championship ever for a Chinese team in the RoboCup Humanoid category.</p>
+<p>Kid-Size also saw many traditional strong teams return, such as Rhoban. But both our MOS team and Germany's HTWK used the Booster Robotics K1 platform, and there was a generational gap between the robots on the field. K1 had an overwhelming advantage. Even Rhoban, the 2023 champion with a very strong software system, could not gain an advantage against K1. The two teams using K1 met in the final, but HTWK had previously competed in the Standard Platform League, where they did not need to work on hardware or control. As a result, they had accumulated more than a decade of experience in perception, localization, planning, and decision-making software, making them much stronger than us in that area. In the final competition, we finished in second place.</p>
+<div class="ros-gallery ros-gallery--pair">
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../robocup_image/T1_and_G1.JPG" alt="T1 and G1" />
+        <figcaption>T1 and G1</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../robocup_image/k1_vs_rhoban.JPG" alt="K1 vs Rhoban" />
+        <figcaption>THMOS vs Rhoban</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../robocup_image/2025htwk_vs_thmos.JPG" alt="2025 HTWK vs THMOS" />
+        <figcaption>2025 HTWK vs THMOS</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired">
+        <img src="../../robocup_image/Cup_.jpg" alt="Cup" />
+        <figcaption>Runner-up trophy</figcaption>
+    </figure>
+</div>
+
+<p>Another year later, MOS 9.2 was completed, and we finally understood how to transfer the policy from simulation to reality. But by then it was already a bit late. Humanoid robotics in China had been developing very rapidly, and K1 had already become a high-performance platform. MOS9 was now in a difficult position and could hardly compete directly with K1, and there were already many Kid-Size humanoid robots in China. MOS9 is not especially stable, because it is not a company product and nobody is doing industrial-level quality control. Many details in the mechanical design are still not polished enough. Still, as a student project, it is already close to the limit of what a few students can build in the spare time squeezed out from daily study and research.</p>
+<div class="ros-gallery ros-gallery--pair ros-gallery--pair-full">
+    <figure class="ros-figure ros-figure--paired">
+        <img class="ros-image--full" src="../../robocup_image/mos92front.JPG" alt="mos92 front" />
+        <figcaption>MOS9.2 front view</figcaption>
+    </figure>
+    <figure class="ros-figure ros-figure--paired">
+        <img class="ros-image--full" src="../../robocup_image/mos92back.JPG" alt="mos92 back" />
+        <figcaption>MOS9.2 rear view</figcaption>
+    </figure>
+</div>
+
+<p>The rules changed a lot again in 2026. The Standard Platform League was removed from the competition, and RoboCup no longer encouraged self-developed robots. Instead, any platform could be used in the competition. As a result, most of the robots on the field in 2026 were Booster Robotics T1 and K1, as well as Gaoqing's Pi-Plus. A large number of Chinese teams also entered, such as BISTU, Wuhan University, Hunan University, China Agricultural University, and China University of Mining and Technology. Before 2025, only Tsinghua and Zhejiang University had participated from China. In addition, former Standard Platform League teams such as B-Human, who had won championships there for more than a decade, brought very strong software system capabilities and therefore held a major advantage under the new rules.</p>
+<p>Because the hardware platforms are now mostly the same, the ability to self-develop the full robot is no longer the single most critical competitive factor. The competition has in some sense merged toward a standard-platform style, with teams focusing more on software algorithms such as vision, localization, planning, and decision-making, and paying less attention to mechanics, systems, and motion control. Since the MOS team has accumulated more experience in full-robot system development over the past few years, we are now at a disadvantage under the new rules. If we want to remain competitive, we need to invest more effort into software development.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Some people believe that MOS9 has already lost its significance, because it can hardly compete with commercial robots and the MOS team is unlikely to achieve top results with it alone. But MOS9 was designed from the beginning as an open-source project. It does not aim only to win competitions. It also aims to serve as an open platform that improves the system development capability of the RoboCup community and helps push the community's technology forward. That is why we are open-sourcing the models, code, and design ideas behind MOS9. We hope this project can provide a relatively complete body of robot system knowledge for beginners, and offer design references for future robot developers. In the future, we will continue working hard and bring MOS9 back onto the competition field.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/THMOS2025/MOS-9-Open-Source-Humanoid-Robot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "navigation.path", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/en-nav-labels.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
